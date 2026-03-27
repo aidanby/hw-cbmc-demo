@@ -1,0 +1,14 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixTrafficLight.sv",
+  "top_module": "traffic_light",
+  "bound": 20,
+  "timeout_seconds": 60,
+  "num_expected_properties": 3,
+  "property_names": ["p_valid", "p_redy_to_g", "p_yellow_to_r"],
+  "module_signature": "module traffic_light(input clk, input reset, output reg [1:0] state)",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  }
+}

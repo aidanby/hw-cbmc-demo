@@ -1,0 +1,14 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixDecoder.sv",
+  "top_module": "decoder2to4",
+  "bound": 1,
+  "timeout_seconds": 5,
+  "num_expected_properties": 3,
+  "property_names": ["p_onehot", "p_sel0", "p_sel3"],
+  "module_signature": "module decoder2to4(input [1:0] in, output reg [3:0] out)",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  }
+}

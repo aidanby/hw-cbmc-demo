@@ -1,0 +1,14 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixAdderCarry.sv",
+  "top_module": "adder_carry",
+  "bound": 1,
+  "timeout_seconds": 5,
+  "num_expected_properties": 2,
+  "property_names": ["p_sum", "p_carry"],
+  "module_signature": "module adder_carry(input [3:0] a, b, output [3:0] sum, output carry)",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  }
+}

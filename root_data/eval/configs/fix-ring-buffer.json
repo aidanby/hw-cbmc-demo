@@ -1,0 +1,14 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixRingBuffer.sv",
+  "top_module": "ring_buffer",
+  "bound": 10,
+  "timeout_seconds": 60,
+  "num_expected_properties": 3,
+  "property_names": ["p_noover", "p_rd_dec", "p_wr_inc"],
+  "module_signature": "module ring_buffer(input clk, input reset, input wr_en, input rd_en, input [7:0] din, output reg [7:0] dout, output reg [2:0] count, output full, output empty)",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  }
+}

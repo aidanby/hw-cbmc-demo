@@ -1,0 +1,29 @@
+# Production docker-compose — maximum security for RL training.
+# Use this when running the student agent for real training/evaluation.
+#
+# Security features:
+# - read_only: filesystem is read-only except explicit tmpfs mounts
+# - network_mode: none — no network access for the student
+# - security_opt: no-new-privileges — prevent privilege escalation
+# - Student can only write to /workdir/data (their workspace) and /tmp
+#
+# Usage:
+#   docker compose -f docker-compose.prod.yml up
+
+services:
+  environment:
+    build: .
+    read_only: true
+    network_mode: none
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp:size=1G,uid=1000,gid=1000,noexec,nosuid
+      - /workdir/data:size=10G,uid=1000,gid=1000
+      - /home/student:size=256M,uid=1000,gid=1000,noexec,nosuid
+    volumes:
+      - ./student_data:/workdir/data:rw
+    stdin_open: true
+    tty: true

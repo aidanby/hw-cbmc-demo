@@ -1,0 +1,49 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: rl-episode-evaluator
+  labels:
+    app: rl-episode
+spec:
+  backoffLimit: 0 # Do not retry failed episodes, just return the 0 score or error
+  template:
+    metadata:
+      labels:
+        app: rl-episode
+    spec:
+      restartPolicy: Never
+      # Security: Enforce no network access for the pod
+      # NetworkPolicies should also be applied in the namespace to drop all egress
+      containers:
+        - name: evaluator
+          image: YOUR_ENV_IMAGE_NAME:latest
+          imagePullPolicy: IfNotPresent
+          command: ["bash", "-c"]
+          # Execute the scoring script and pipe the JSON output
+          args:
+            - |
+              /root/.venv/bin/python /root_data/eval/scoring.py '/root_data/eval/configs/YOUR_TASK_ID.json' /tmp/score.json > /dev/null 2>&1
+              cat /tmp/score.json 2>/dev/null || echo '{"score": 0.0, "error": "Scoring script failed to output JSON"}'
+          securityContext:
+            runAsUser: 0 # Scoring must run as root to access /root_data
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+          volumeMounts:
+            - name: student-data
+              mountPath: /workdir/data
+            - name: shared-data
+              mountPath: /workdir/shared
+              readOnly: true
+            - name: tmp-volume
+              mountPath: /tmp
+      volumes:
+        # In a real K8s setup, student-data would be populated dynamically 
+        # by your policy model, either via an emptyDir with an initContainer,
+        # or by mounting a dynamically provisioned PersistentVolumeClaim.
+        - name: student-data
+          emptyDir: {}
+        - name: shared-data
+          configMap:
+            name: env-shared-data
+        - name: tmp-volume
+          emptyDir: {}

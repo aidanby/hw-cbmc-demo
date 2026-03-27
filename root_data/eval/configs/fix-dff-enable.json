@@ -1,0 +1,14 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixDffEnable.sv",
+  "top_module": "dff_enable",
+  "bound": 10,
+  "timeout_seconds": 30,
+  "num_expected_properties": 2,
+  "property_names": ["p_hold", "p_capture"],
+  "module_signature": "module dff_enable(input clk, input reset, input enable, input d, output reg q)",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  }
+}

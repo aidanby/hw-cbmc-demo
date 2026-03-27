@@ -1,0 +1,15 @@
+-- Up-counter that increments by 1 each step, range 0..15.
+-- BUG: next(x) := x + 2 should be x + 1.
+-- Fix the next-state expression so all properties pass.
+
+MODULE main
+VAR
+  x : 0..15;
+ASSIGN
+  init(x) := 0;
+  next(x) := x + 2;  -- BUG: should be x + 1
+
+-- With +2 bug, x only visits even values (0,2,4,...) so x=1 is unreachable
+LTLSPEC G F (x = 1);
+-- With +2 bug, x=3 is also unreachable
+LTLSPEC G F (x = 3);

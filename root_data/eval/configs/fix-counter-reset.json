@@ -1,0 +1,14 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixCounterReset.sv",
+  "top_module": "counter",
+  "bound": 10,
+  "timeout_seconds": 30,
+  "num_expected_properties": 2,
+  "property_names": ["p_reset", "p_inc"],
+  "module_signature": "module counter(input clk, input reset, output reg [7:0] count)",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  }
+}
