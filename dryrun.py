@@ -662,7 +662,7 @@ Do NOT remove, rename, or weaken any assertions. Do NOT try to access /root_data
     # Multi-turn loop — allow enough turns for complex tasks
     # but cap cost to prevent runaway spending
     MAX_TURNS = 25
-    MAX_TIME = 600  # 10 minutes hard wall-clock timeout
+    MAX_TIME = 900  # 15 minutes wall clock
     MAX_MESSAGES = 20  # Keep conversation context bounded
     total_tokens_used = 0
     MAX_TOKENS_BUDGET = 200_000  # bounded token budget per trial
@@ -685,7 +685,7 @@ Do NOT remove, rename, or weaken any assertions. Do NOT try to access /root_data
                     tools=tools,
                     messages=messages,
                 )
-                response = future.result(timeout=60)
+                response = future.result(timeout=300)
         except Exception as e:
             errors.append(f"API error: {e}")
             break
@@ -997,7 +997,18 @@ def main():
     parser.add_argument("env_dir", help="Path to the environment")
     parser.add_argument("--scoring-only", action="store_true")
     parser.add_argument("--student-only", action="store_true")
-    parser.add_argument("--model", default="gemini/gemini-2.5-flash")
+    parser.add_argument("--model", default="gemini/gemini-2.5-flash",
+                        help="LiteLLM model ID. Supported models:
+"
+                             "  gemini/gemini-2.5-flash          (Gemini Flash, default)
+"
+                             "  gemini/gemini-3.1-pro-preview    (Gemini Pro)
+"
+                             "  anthropic/claude-sonnet-4-6      (Claude Sonnet)
+"
+                             "  openai/Mistral-large-3           (Mistral Large)
+"
+                             "  openai/kimi-k2.5                 (Kimi K2.5)")
     parser.add_argument("--output", "-o", help="Save results JSON to this path")
     parser.add_argument("--all-tasks", action="store_true", help="Run dryrun for all tasks")
     args = parser.parse_args()
