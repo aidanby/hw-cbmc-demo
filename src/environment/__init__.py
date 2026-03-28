@@ -11,10 +11,10 @@ class Task:
     """Base class for environment tasks.
 
     Required properties:
-        id: str               — unique task ID (kebab-case, e.g., "optimize-pipeline")
-        steps: list[Step]     — one or more steps the student completes
-        tools: list[str]      — tools available to the student (e.g., ["bash", "view_lines_in_file"])
-        required_hardware: str — hardware spec (e.g., "cpu-2.8gb", "h100-3g.40gb")
+        id: str               -- unique task ID (kebab-case, e.g., "optimize-pipeline")
+        steps: list[Step]     -- one or more steps the student completes
+        tools: list[str]      -- tools available to the student (e.g., ["bash", "view_lines_in_file"])
+        required_hardware: str -- hardware spec (e.g., "cpu-2.8gb", "h100-3g.40gb")
     """
     id: str = ""
 
@@ -23,7 +23,7 @@ class Step:
     """Base class for task steps.
 
     Required properties:
-        instructions: str — what the student sees. Should describe the goal,
+        instructions: str -- what the student sees. Should describe the goal,
                            not the method. Don't mention scoring or grades.
     """
     pass

@@ -1,4 +1,4 @@
-"""Example hw-cbmc task — copy this pattern for each task.
+"""Example hw-cbmc task -- copy this pattern for each task.
 
 Two base classes available (from _base.py):
   - DebugCircuitTask: fix a deliberate logic bug until all assertions PROVE

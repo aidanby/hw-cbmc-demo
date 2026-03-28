@@ -1,4 +1,3 @@
 {
-  "efficiency_penalty": false,
-  "model_order": ["unmodified"]
+  "efficiency_penalty": false
 }

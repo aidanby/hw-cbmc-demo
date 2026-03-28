@@ -1,5 +1,5 @@
 #!/bin/bash
-# run_eval.sh — Parallel evaluation runner for any environment.
+# run_eval.sh -- Parallel evaluation runner for any environment.
 #
 # Maximizes throughput across available API keys without throttling.
 # Supports 1 key (customer) or 2 keys (internal) modes.
@@ -18,7 +18,7 @@
 #   Total wall time ≈ (N_runs / num_keys) × time_per_run
 #
 # Key detection priority:
-#   1. LITELLM_API_KEY (always used if set — routes to any provider)
+#   1. LITELLM_API_KEY (always used if set -- routes to any provider)
 #   2. GEMINI_API_KEY (used as second parallel key, or primary if no LITELLM)
 #   3. OPENAI_API_KEY / ANTHROPIC_API_KEY (fallback)
 
@@ -103,10 +103,10 @@ echo "  Tasks:    ${TASK_COUNT}"
 echo "  Runs:     ${NUM_RUNS}"
 echo "  Workers:  ${MAX_WORKERS} per process"
 if [ "$DUAL_KEY" = true ]; then
-    echo "  Keys:     2 (LITELLM + GEMINI) — 2 parallel processes"
+    echo "  Keys:     2 (LITELLM + GEMINI) -- 2 parallel processes"
     echo "  Total concurrent: $((MAX_WORKERS * 2)) tasks"
 else
-    echo "  Keys:     1 — single process"
+    echo "  Keys:     1 -- single process"
     echo "  Total concurrent: ${MAX_WORKERS} tasks"
 fi
 echo ""

@@ -5,8 +5,8 @@
 # Auto-discovers all run files, computes stats, generates SVG heatmap.
 #
 # Usage:
-#   ./update_results.sh                    # if finalize_readme.py is in PATH or ../env-builder
-#   ./update_results.sh /path/to/env-builder/finalize_readme.py
+#   ./update_results.sh                    # if finalize_readme.py is in PATH or parent directory
+#   ./update_results.sh /path/to/finalize_readme.py
 
 set -euo pipefail
 
@@ -18,15 +18,15 @@ if [ $# -ge 1 ] && [ -f "$1" ]; then
     FINALIZE="$1"
 elif [ -f "$ENV_DIR/finalize_readme.py" ]; then
     FINALIZE="$ENV_DIR/finalize_readme.py"
-elif [ -f "$ENV_DIR/../env-builder/finalize_readme.py" ]; then
-    FINALIZE="$ENV_DIR/../env-builder/finalize_readme.py"
+elif [ -f "$ENV_DIR/../finalize_readme.py" ]; then
+    FINALIZE="$ENV_DIR/../finalize_readme.py"
 elif command -v finalize_readme.py &>/dev/null; then
     FINALIZE="finalize_readme.py"
 fi
 
 if [ -z "$FINALIZE" ]; then
     echo "ERROR: Cannot find finalize_readme.py"
-    echo "Usage: ./update_results.sh /path/to/env-builder/finalize_readme.py"
+    echo "Usage: ./update_results.sh /path/to/finalize_readme.py"
     exit 1
 fi
 
