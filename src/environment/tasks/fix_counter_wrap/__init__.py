@@ -1,4 +1,4 @@
-"""fix-counter-wrap: BCD counter that wraps at 15 instead of 9."""
+"""fix-counter-wrap: BCD counter that wraps to wrong reset value."""
 from typing import final
 
 from environment.tasks._base import DebugCircuitTask
@@ -13,4 +13,4 @@ class FixCounterWrapTask(DebugCircuitTask):
     tier = "2"
     tier_label = "Simple Sequential"
     num_properties = 3
-    bug_description = "BCD counter wraps at 15 not 9 (off-by-one in wrap condition)"
+    bug_description = "BCD counter wraps to 1 instead of 0 (wrong wrap target value)"

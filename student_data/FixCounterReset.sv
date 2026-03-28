@@ -1,9 +1,9 @@
 // 8-bit counter with synchronous reset.
-// BUG: reset polarity is inverted — fix it so all properties pass.
+// The counter is not behaving correctly when reset is asserted.
 module counter(input clk, input reset, output reg [7:0] count);
   initial count = 0;
   always @(posedge clk) begin
-    if (!reset)    // BUG: should be (reset), not (!reset)
+    if (!reset)
       count <= 0;
     else
       count <= count + 1;

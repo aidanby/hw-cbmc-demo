@@ -1,6 +1,5 @@
--- One-hot FSM with 3 states: s0 -> s1 -> s2 -> s0 (cycle).
--- BUG: next(s1) := s0 | s2 (should be s0 only — s2 should not activate s1).
--- Fix the next-state so the FSM is strictly one-hot cyclic.
+-- One-hot FSM with 3 states forming a cycle: s0 -> s1 -> s2 -> s0.
+-- The FSM is violating its one-hot invariant on some transitions.
 
 MODULE main
 VAR
@@ -13,12 +12,9 @@ ASSIGN
   init(s2) := FALSE;
 
   next(s0) := s2;
-  next(s1) := s0 | s2;  -- BUG: should be s0 only
+  next(s1) := s0 | s2;
   next(s2) := s1;
 
--- Exactly one state is active (one-hot invariant)
 LTLSPEC G ((s0 & !s1 & !s2) | (!s0 & s1 & !s2) | (!s0 & !s1 & s2));
--- s2 should NOT activate s1 (when in s2, next state is s0 only via next(s0):=s2)
 LTLSPEC G (s2 -> X !s1);
--- After s2, we go to s0 (not s1 or both)
 LTLSPEC G (s2 -> X s0);

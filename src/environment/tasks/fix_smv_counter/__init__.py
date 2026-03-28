@@ -1,4 +1,4 @@
-"""fix-smv-counter: NuSMV counter with next(x) := x + 2 instead of x + 1."""
+"""fix-smv-counter: NuSMV counter that saturates at 15 instead of wrapping to 0."""
 from typing import final
 
 from environment.tasks._base import DebugCircuitTask
@@ -13,4 +13,4 @@ class FixSmvCounterTask(DebugCircuitTask):
     tier = "4"
     tier_label = "NuSMV"
     num_properties = 2
-    bug_description = "NuSMV counter: next(x) := x + 2 should be x + 1"
+    bug_description = "counter saturates at 15 (TRUE: x) instead of wrapping to 0 (TRUE: 0)"

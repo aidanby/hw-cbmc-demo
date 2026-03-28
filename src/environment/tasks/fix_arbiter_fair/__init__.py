@@ -1,4 +1,4 @@
-"""fix-arbiter-fair: 2-client arbiter that always grants client 0."""
+"""fix-arbiter-fair: 2-client round-robin arbiter with inverted turn condition."""
 from typing import final
 
 from environment.tasks._base import DebugCircuitTask
@@ -13,4 +13,4 @@ class FixArbiterFairTask(DebugCircuitTask):
     tier = "3"
     tier_label = "FSM / Multi-register"
     num_properties = 3
-    bug_description = "2-client arbiter always grants client 0, ignoring the turn register"
+    bug_description = "round-robin arbiter uses turn==1 where it should use turn==0 — always grants client 0 when both request"

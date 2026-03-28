@@ -83,17 +83,16 @@ class DebugCircuitTask(HWCBMCTask):
     def _core_instructions(self) -> str:
         return dedent(f"""\
             You have a SystemVerilog file at /workdir/data/{self.sv_filename}
-            with {self.num_properties} formal assertion(s). The circuit has a deliberate
-            logic bug — one or more of the named assertions are currently REFUTED.
+            with {self.num_properties} formal assertion(s). The circuit has a logic
+            bug — one or more of the named assertions are currently REFUTED by the
+            model checker.
 
             Your task: find and fix the bug so all assertions PROVE when you run:
                 ebmc /workdir/data/{self.sv_filename} --bound {self.bound}
 
-            Hints:
-            - Read the assertion names — they describe the invariant being checked
-            - Run ebmc first to see the counterexample (it shows the failing trace)
-            - Look at the always block and compare the condition to what the assertion expects
-            - Only fix the bug; do not remove, rename, or weaken any assertions
+            Rules:
+            - Do not remove, rename, or weaken any assertions
+            - Do not add assume property, restrict, or constraint statements
             - The module interface (port list) must not be changed""")
 
 

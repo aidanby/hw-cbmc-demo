@@ -1,12 +1,11 @@
 // BCD counter: counts 0-9 and wraps back to 0.
-// BUG: counter wraps at 15 (4'hF) instead of 9 (4'd9).
-// Fix the wrap condition so all properties pass.
+// The counter is not wrapping correctly at the end of its range.
 module bcd_counter(input clk, input reset, output reg [3:0] count);
   initial count = 0;
   always @(posedge clk) begin
     if (reset)
       count <= 0;
-    else if (count == 4'd15)  // BUG: should be 4'd9
+    else if (count > 4'd9)
       count <= 0;
     else
       count <= count + 1;

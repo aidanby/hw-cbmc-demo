@@ -1,14 +1,12 @@
 // 2-to-4 decoder: exactly one output bit high based on 2-bit input.
-// BUG: output[3] is always 0 (missing case for 2'b11).
-// Fix the decoder so all properties pass.
+// The decoder is producing incorrect output for some input combinations.
 module decoder2to4(input [1:0] in, output reg [3:0] out);
   always @(*) begin
     case (in)
       2'b00: out = 4'b0001;
       2'b01: out = 4'b0010;
       2'b10: out = 4'b0100;
-      // BUG: missing case 2'b11 — should be out = 4'b1000
-      default: out = 4'b0000;  // BUG: produces wrong result for in=2'b11
+      default: out = 4'b0000;
     endcase
   end
 

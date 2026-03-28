@@ -1,4 +1,4 @@
-"""fix-adder-carry: 4-bit adder with buggy carry logic."""
+"""fix-adder-carry: 4-bit carry-lookahead adder with wrong generate term."""
 from typing import final
 
 from environment.tasks._base import DebugCircuitTask
@@ -13,4 +13,4 @@ class FixAdderCarryTask(DebugCircuitTask):
     tier = "1"
     tier_label = "Combinational"
     num_properties = 2
-    bug_description = "carry uses & instead of | in sum-of-products carry lookahead"
+    bug_description = "generate terms use | instead of & (over-generates carry, corrupts sum and carry output)"
