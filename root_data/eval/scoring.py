@@ -23,11 +23,14 @@ Anti-cheat checks (in order, all run before EBMC):
   5. $finish/$stop:     simulation halting commands → 0
   6. synthesis_off:     // synthesis translate_off → 0
   7. Assertion identity: named assertion body is (1)/(1'b1)/(|0)/(~0) → warn only
+  8. Assume/restrict:   assume property / restrict (SV) or INVAR/TRANS/FAIRNESS (SMV) → 0
+  9. Assertion body hash: SHA256 of all assertion lines must match config → 0
 
 Usage:
     python scoring.py <config_path> <output_path>
 """
 
+import hashlib
 import json
 import math
 import os
@@ -219,6 +222,52 @@ def _check_assertion_identity(source: str, property_names: list) -> list:
     return suspicious
 
 
+def _has_assume_restrict(source: str, is_smv: bool = False) -> bool:
+    """Check for assume/restrict injections that produce vacuous proofs.
+
+    SV: assume property (...) or restrict property (...) over-constrain the
+        model so EBMC proves assertions vacuously.
+    SMV: INVAR, TRANS, FAIRNESS keywords add constraints not present in the
+         original task file, narrowing the reachable state space.
+    """
+    if is_smv:
+        stripped = _strip_smv_comments(source)
+        if re.search(r'^\s*(?:INVAR|TRANS|FAIRNESS)\b', stripped, re.MULTILINE):
+            return True
+        return False
+    else:
+        stripped = _strip_sv_comments(source)
+        if re.search(r'\bassume\s+(?:property\s*)?\(', stripped):
+            return True
+        if re.search(r'\brestrict\s+(?:property\s*)?\(', stripped):
+            return True
+        return False
+
+
+def _compute_assertion_hash(source: str, is_smv: bool = False) -> str:
+    """SHA256 of all assertion/property lines (stripped, in file order).
+
+    Detects any modification to assertion bodies — weakening, rewriting,
+    or swapping to match buggy behavior.
+    """
+    if is_smv:
+        stripped = _strip_smv_comments(source)
+        lines = [
+            line.strip()
+            for line in stripped.splitlines()
+            if re.search(r'\b(?:LTLSPEC|CTLSPEC|INVARSPEC)\b', line)
+        ]
+    else:
+        stripped = _strip_sv_comments(source)
+        lines = [
+            line.strip()
+            for line in stripped.splitlines()
+            if re.search(r'\bassert\s+(?:property|final)\b', line)
+        ]
+    combined = '\n'.join(lines)
+    return hashlib.sha256(combined.encode()).hexdigest()
+
+
 # ── EBMC invocation ──────────────────────────────────────────────────
 
 def _run_ebmc(sv_file: str, top_module: str, bound: int,
@@ -375,6 +424,27 @@ def main():
         metadata["error"] = "// synthesis translate_off found — would hide assertions"
         _write_result(output_path, 0.0, metadata)
         return
+
+    # ── ANTI-CHEAT 8: assume / restrict / INVAR injection ───────────
+    if _has_assume_restrict(source, is_smv=is_smv):
+        metadata["cheat"] = "assume_inject"
+        metadata["error"] = (
+            "assume/restrict constraint injection detected (SV) or "
+            "INVAR/TRANS/FAIRNESS constraint injection detected (SMV)"
+        )
+        _write_result(output_path, 0.0, metadata)
+        return
+
+    # ── ANTI-CHEAT 9: Assertion body integrity ───────────────────────
+    expected_hash = config.get("assertion_body_hash", "")
+    if expected_hash:
+        actual_hash = _compute_assertion_hash(source, is_smv=is_smv)
+        metadata["assertion_body_hash_actual"] = actual_hash
+        if actual_hash != expected_hash:
+            metadata["cheat"] = "assertion_body_modified"
+            metadata["error"] = "Assertion bodies have been modified from the original"
+            _write_result(output_path, 0.0, metadata)
+            return
 
     # ── ANTI-CHEAT 7: Assertion identity (warn-only, soft) ──────────
     if property_names and not is_smv:

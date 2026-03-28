@@ -5,10 +5,14 @@
   "bound": 1,
   "timeout_seconds": 5,
   "num_expected_properties": 2,
-  "property_names": ["p_sum", "p_carry"],
+  "property_names": [
+    "p_sum",
+    "p_carry"
+  ],
   "module_signature": "module adder_carry(input [3:0] a, b, output [3:0] sum, output carry)",
   "scoring": {
     "sigmoid_center": 0.55,
     "sigmoid_scale": 8.0
-  }
+  },
+  "assertion_body_hash": "b68456a45a54aad9f32b10a3b11db0c90056d7c3d0b2369803a53f4904d6c1ca"
 }

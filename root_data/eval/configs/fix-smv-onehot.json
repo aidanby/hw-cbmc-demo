@@ -5,10 +5,13 @@
   "bound": 10,
   "timeout_seconds": 30,
   "num_expected_properties": 3,
-  "property_names": ["LTLSPEC"],
+  "property_names": [
+    "LTLSPEC"
+  ],
   "module_signature": "",
   "scoring": {
     "sigmoid_center": 0.55,
     "sigmoid_scale": 8.0
-  }
+  },
+  "assertion_body_hash": "a95923d3a4c8d2a070cb4dbe6b252b3a597ced607e0dc6d9c6514498b70d14ae"
 }

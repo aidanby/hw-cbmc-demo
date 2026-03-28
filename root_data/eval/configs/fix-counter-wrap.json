@@ -5,10 +5,15 @@
   "bound": 15,
   "timeout_seconds": 30,
   "num_expected_properties": 3,
-  "property_names": ["p_range", "p_wrap", "p_inc"],
+  "property_names": [
+    "p_range",
+    "p_wrap",
+    "p_inc"
+  ],
   "module_signature": "module bcd_counter(input clk, input reset, output reg [3:0] count)",
   "scoring": {
     "sigmoid_center": 0.55,
     "sigmoid_scale": 8.0
-  }
+  },
+  "assertion_body_hash": "182a94ccd2cf923b5102c31b9f80118fb4e07e61f47aabb9833b8764e793cf09"
 }

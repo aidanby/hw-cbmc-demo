@@ -5,10 +5,14 @@
   "bound": 1,
   "timeout_seconds": 5,
   "num_expected_properties": 2,
-  "property_names": ["p_sel1", "p_sel2"],
+  "property_names": [
+    "p_sel1",
+    "p_sel2"
+  ],
   "module_signature": "module mux4(input [3:0] d, input [1:0] sel, output reg out)",
   "scoring": {
     "sigmoid_center": 0.55,
     "sigmoid_scale": 8.0
-  }
+  },
+  "assertion_body_hash": "abc247c611c14830c94795f9d5296c97d4487a36d3653c8ed137e1ee36dde52b"
 }

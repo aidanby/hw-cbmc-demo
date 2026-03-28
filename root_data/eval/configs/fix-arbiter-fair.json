@@ -5,10 +5,15 @@
   "bound": 15,
   "timeout_seconds": 60,
   "num_expected_properties": 3,
-  "property_names": ["p_mutex", "p_fair0", "p_fair1"],
+  "property_names": [
+    "p_mutex",
+    "p_fair0",
+    "p_fair1"
+  ],
   "module_signature": "module arbiter_fair(input clk, input reset, input req0, req1, output reg grant0, output reg grant1)",
   "scoring": {
     "sigmoid_center": 0.55,
     "sigmoid_scale": 8.0
-  }
+  },
+  "assertion_body_hash": "c1a274bf1934af4847fe8d66debd1344dcd1fa9d5088de8400e9e4f7076225dc"
 }

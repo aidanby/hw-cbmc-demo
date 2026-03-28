@@ -5,10 +5,14 @@
   "bound": 10,
   "timeout_seconds": 30,
   "num_expected_properties": 2,
-  "property_names": ["p_hold", "p_capture"],
+  "property_names": [
+    "p_hold",
+    "p_capture"
+  ],
   "module_signature": "module dff_enable(input clk, input reset, input enable, input d, output reg q)",
   "scoring": {
     "sigmoid_center": 0.55,
     "sigmoid_scale": 8.0
-  }
+  },
+  "assertion_body_hash": "3eeecb828b8cc87ec5aa0c01c091f5314450a9f169e852324ba12b2b4e41a5c3"
 }
