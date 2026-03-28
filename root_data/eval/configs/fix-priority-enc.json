@@ -1,0 +1,20 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixPriorityEnc.sv",
+  "top_module": "priority_enc",
+  "bound": 1,
+  "timeout_seconds": 60,
+  "num_expected_properties": 4,
+  "property_names": [
+    "p_b3",
+    "p_b2",
+    "p_b1",
+    "p_b0"
+  ],
+  "module_signature": "module priority_enc(input [3:0] in, output reg [1:0] out)",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "fecb2ff5c054d1a1a9c8e925687c0da1d9ee346b0691163daabfe5071af7c70a"
+}

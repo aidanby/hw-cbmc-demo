@@ -13,4 +13,5 @@ class FixSmvOnehotTask(DebugCircuitTask):
     tier = "4"
     tier_label = "NuSMV"
     num_properties = 3
-    bug_description = "one-hot FSM: next(s1) := s0 | s2 should be s0 only"
+    bug_description = "one-hot FSM has 2 bugs: next(s1) uses s0|s2 instead of s0 only, and next(s2) uses s0 instead of s1"
+    hint = "Two next-state assignments are wrong. For each state, trace which predecessor should activate it in the correct s0→s1→s2→s0 cycle."

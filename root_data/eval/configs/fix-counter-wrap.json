@@ -4,16 +4,17 @@
   "top_module": "bcd_counter",
   "bound": 15,
   "timeout_seconds": 30,
-  "num_expected_properties": 3,
+  "num_expected_properties": 4,
   "property_names": [
     "p_range",
     "p_wrap",
-    "p_inc"
+    "p_inc",
+    "p_wrap_val"
   ],
   "module_signature": "module bcd_counter(input clk, input reset, output reg [3:0] count)",
   "scoring": {
     "sigmoid_center": 0.55,
     "sigmoid_scale": 8.0
   },
-  "assertion_body_hash": "182a94ccd2cf923b5102c31b9f80118fb4e07e61f47aabb9833b8764e793cf09"
+  "assertion_body_hash": "f77668c3c8a45c78684baa7fad0a8c44ab26122a99717c8f4b2181125beb003c"
 }

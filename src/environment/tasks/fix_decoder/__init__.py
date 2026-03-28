@@ -12,5 +12,5 @@ class FixDecoderTask(DebugCircuitTask):
     bound = 1
     tier = "1"
     tier_label = "Combinational"
-    num_properties = 3
+    num_properties = 5
     bug_description = "2:4 decoder output[3] is wrong (missing case for 2'b11)"

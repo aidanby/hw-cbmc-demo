@@ -4,16 +4,19 @@
   "top_module": "arbiter_fair",
   "bound": 15,
   "timeout_seconds": 60,
-  "num_expected_properties": 3,
+  "num_expected_properties": 6,
   "property_names": [
     "p_mutex",
+    "p_req0_only",
+    "p_req1_only",
     "p_fair0",
-    "p_fair1"
+    "p_turn_g0",
+    "p_turn_g1"
   ],
   "module_signature": "module arbiter_fair(input clk, input reset, input req0, req1, output reg grant0, output reg grant1)",
   "scoring": {
-    "sigmoid_center": 0.75,
+    "sigmoid_center": 0.85,
     "sigmoid_scale": 8.0
   },
-  "assertion_body_hash": "1b7f8bddd179a7117ebf9318e2d2657bbebb8624f0cadb4748365a9ff1982620"
+  "assertion_body_hash": "31cd9f918698d4163df0e39241c6a7ce1dd32848335d3bc4a7956aa0071da827"
 }

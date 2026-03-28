@@ -12,5 +12,6 @@ class FixArbiterFairTask(DebugCircuitTask):
     bound = 15
     tier = "3"
     tier_label = "FSM / Multi-register"
-    num_properties = 3
-    bug_description = "round-robin arbiter uses turn==1 where it should use turn==0 — always grants client 0 when both request"
+    num_properties = 6
+    bug_description = "round-robin arbiter has 3 bugs: wrong turn value in grant condition, and both turn-update assignments are inverted after granting"
+    hint = "Check 3 separate sites: (1) the turn value used in the grant condition, (2) the turn assignment after grant0, (3) the turn assignment after grant1."

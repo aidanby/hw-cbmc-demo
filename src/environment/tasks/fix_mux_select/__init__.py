@@ -12,5 +12,5 @@ class FixMuxSelectTask(DebugCircuitTask):
     bound = 1
     tier = "1"
     tier_label = "Combinational"
-    num_properties = 2
+    num_properties = 4
     bug_description = "4:1 mux indexes select bits in wrong order"

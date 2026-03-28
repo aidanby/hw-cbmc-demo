@@ -4,10 +4,12 @@
   "top_module": "decoder2to4",
   "bound": 1,
   "timeout_seconds": 5,
-  "num_expected_properties": 3,
+  "num_expected_properties": 5,
   "property_names": [
     "p_onehot",
     "p_sel0",
+    "p_sel1",
+    "p_sel2",
     "p_sel3"
   ],
   "module_signature": "module decoder2to4(input [1:0] in, output reg [3:0] out)",
@@ -15,5 +17,5 @@
     "sigmoid_center": 0.55,
     "sigmoid_scale": 8.0
   },
-  "assertion_body_hash": "b271dc048b8d642a0ce8228fe3566c14b5285e9ed5e18b1819c592097283d4b8"
+  "assertion_body_hash": "0ad04e00d2e2f1377495d7744314ddcdb9e5d98b1e982edec05b97ad5ad06b59"
 }

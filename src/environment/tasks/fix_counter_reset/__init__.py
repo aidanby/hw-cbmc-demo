@@ -12,5 +12,5 @@ class FixCounterResetTask(DebugCircuitTask):
     bound = 10
     tier = "2"
     tier_label = "Simple Sequential"
-    num_properties = 2
+    num_properties = 3
     bug_description = "reset polarity inverted (!reset vs reset)"

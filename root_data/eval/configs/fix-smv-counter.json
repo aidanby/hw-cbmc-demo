@@ -4,7 +4,7 @@
   "top_module": "main",
   "bound": 10,
   "timeout_seconds": 30,
-  "num_expected_properties": 2,
+  "num_expected_properties": 3,
   "property_names": [
     "LTLSPEC"
   ],
@@ -13,5 +13,5 @@
     "sigmoid_center": 0.55,
     "sigmoid_scale": 8.0
   },
-  "assertion_body_hash": "c0aede8dc47785229f271853bc1a0339b41dd5ba8ad1c7eda961ba6da4783d76"
+  "assertion_body_hash": "df33c859f0fe603d54a8a13a1af4398b05c10185a6bb0fc7694a8e7886d25544"
 }

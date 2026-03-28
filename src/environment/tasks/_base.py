@@ -78,9 +78,11 @@ class DebugCircuitTask(HWCBMCTask):
     task_type = "fix_broken"
     bug_description: str = ""
     num_properties: int = 0
+    hint: str = ""  # Optional hint for harder tasks
 
     @property
     def _core_instructions(self) -> str:
+        hint_line = f"\nHint: {self.hint}" if self.hint else ""
         return dedent(f"""\
             You have a SystemVerilog file at /workdir/data/{self.sv_filename}
             with {self.num_properties} formal assertion(s). The circuit has a logic
@@ -93,7 +95,7 @@ class DebugCircuitTask(HWCBMCTask):
             Rules:
             - Do not remove, rename, or weaken any assertions
             - Do not add assume property, restrict, or constraint statements
-            - The module interface (port list) must not be changed""")
+            - The module interface (port list) must not be changed{hint_line}""")
 
 
 class ImplementModuleTask(HWCBMCTask):

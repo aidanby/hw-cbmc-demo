@@ -4,15 +4,17 @@
   "top_module": "dff_enable",
   "bound": 10,
   "timeout_seconds": 30,
-  "num_expected_properties": 2,
+  "num_expected_properties": 4,
   "property_names": [
+    "p_reset",
     "p_hold",
-    "p_capture"
+    "p_capture",
+    "p_reset_clr"
   ],
   "module_signature": "module dff_enable(input clk, input reset, input enable, input d, output reg q)",
   "scoring": {
     "sigmoid_center": 0.75,
     "sigmoid_scale": 8.0
   },
-  "assertion_body_hash": "acaae67d5486837ed8bfdca5b7d66e59c5df67846c4cff8594e7b22d71f5f5d5"
+  "assertion_body_hash": "17c63d6f21d9d951852ce52954a9010d12849aedb402746927770af0e432412b"
 }

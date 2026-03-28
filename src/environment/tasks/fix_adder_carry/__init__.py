@@ -12,5 +12,6 @@ class FixAdderCarryTask(DebugCircuitTask):
     bound = 1
     tier = "1"
     tier_label = "Combinational"
-    num_properties = 2
+    num_properties = 3
     bug_description = "generate terms use | instead of & (over-generates carry, corrupts sum and carry output)"
+    hint = "Check the generate (g) assignments — the correct operation for carry generation is bitwise AND, not OR."

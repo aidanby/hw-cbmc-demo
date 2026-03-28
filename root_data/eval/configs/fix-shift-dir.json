@@ -4,15 +4,17 @@
   "top_module": "shift_reg",
   "bound": 10,
   "timeout_seconds": 30,
-  "num_expected_properties": 2,
+  "num_expected_properties": 4,
   "property_names": [
+    "p_reset",
     "p_msb",
-    "p_lsb1"
+    "p_lsb1",
+    "p_chain"
   ],
   "module_signature": "module shift_reg(input clk, input reset, input din, output reg [7:0] q)",
   "scoring": {
     "sigmoid_center": 0.55,
     "sigmoid_scale": 8.0
   },
-  "assertion_body_hash": "d7140631e1358d386b26fb8a4596f5c75f2e8195704a4347de74a9a454071c92"
+  "assertion_body_hash": "55b37a6aa8546e744f8ead47f8a6e90f16eb679a718b2a5ad0f4da3d5b2be173"
 }

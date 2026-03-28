@@ -12,16 +12,18 @@ module traffic_light(input clk, input reset, output reg [1:0] state);
       state <= RED;
     end else begin
       case (state)
-        RED:        state <= RED_YELLOW;
-        RED_YELLOW: state <= YELLOW;
+        RED:        state <= GREEN;
+        RED_YELLOW: state <= RED;
         GREEN:      state <= YELLOW;
-        YELLOW:     state <= YELLOW;
+        YELLOW:     state <= RED_YELLOW;
         default:    state <= RED;
       endcase
     end
   end
 
   p_valid:       assert property (@(posedge clk) state inside {RED, RED_YELLOW, GREEN, YELLOW});
+  p_red_to_ry:   assert property (@(posedge clk) state == RED && !reset |=> state == RED_YELLOW);
   p_redy_to_g:   assert property (@(posedge clk) state == RED_YELLOW && !reset |=> state == GREEN);
-  p_yellow_to_r: assert property (@(posedge clk) state == YELLOW |=> state == RED);
+  p_green_to_y:  assert property (@(posedge clk) state == GREEN && !reset |=> state == YELLOW);
+  p_yellow_to_r: assert property (@(posedge clk) state == YELLOW && !reset |=> state == RED);
 endmodule

@@ -15,6 +15,9 @@ from environment.tasks.fix_arbiter_fair import FixArbiterFairTask
 from environment.tasks.fix_ring_buffer import FixRingBufferTask
 from environment.tasks.fix_smv_counter import FixSmvCounterTask
 from environment.tasks.fix_smv_onehot import FixSmvOnehotTask
+from environment.tasks.fix_priority_enc import FixPriorityEncTask
+from environment.tasks.fix_fibonacci import FixFibonacciTask
+from environment.tasks.fix_lfsr import FixLFSRTask
 
 __all__ = [
     "FixAdderCarryTask",
@@ -29,4 +32,7 @@ __all__ = [
     "FixRingBufferTask",
     "FixSmvCounterTask",
     "FixSmvOnehotTask",
+    "FixPriorityEncTask",
+    "FixFibonacciTask",
+    "FixLFSRTask",
 ]

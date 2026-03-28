@@ -12,5 +12,5 @@ class FixTrafficLightTask(DebugCircuitTask):
     bound = 20
     tier = "3"
     tier_label = "FSM / Multi-register"
-    num_properties = 3
+    num_properties = 5
     bug_description = "4-state FSM: YELLOW state transitions to itself instead of RED (stuck)"

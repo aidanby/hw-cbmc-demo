@@ -1,0 +1,20 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixFibonacci.sv",
+  "top_module": "fibonacci",
+  "bound": 15,
+  "timeout_seconds": 60,
+  "num_expected_properties": 4,
+  "property_names": [
+    "p_init_curr",
+    "p_init_prev",
+    "p_step",
+    "p_no_shrink"
+  ],
+  "module_signature": "module fibonacci(input clk, input reset, output reg [7:0] curr)",
+  "scoring": {
+    "sigmoid_center": 0.75,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "5b3f3d4ad99e05570e58578751c4b9ad6502db56b014a5ff128ac3b0829dd46c"
+}

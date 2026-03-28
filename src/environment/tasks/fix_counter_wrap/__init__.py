@@ -12,5 +12,5 @@ class FixCounterWrapTask(DebugCircuitTask):
     bound = 15
     tier = "2"
     tier_label = "Simple Sequential"
-    num_properties = 3
+    num_properties = 4
     bug_description = "BCD counter wraps to 1 instead of 0 (wrong wrap target value)"

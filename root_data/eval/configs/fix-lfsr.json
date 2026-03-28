@@ -1,0 +1,19 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixLFSR.sv",
+  "top_module": "lfsr4",
+  "bound": 20,
+  "timeout_seconds": 60,
+  "num_expected_properties": 3,
+  "property_names": [
+    "p_nonzero",
+    "p_reset_seed",
+    "p_step_4"
+  ],
+  "module_signature": "module lfsr4(input clk, input reset, output reg [3:0] q)",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "b79040557b3830b2d69c564fb7ab14ee29a2b4966b890a3fdbedce752ea9d7df"
+}

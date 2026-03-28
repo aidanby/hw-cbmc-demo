@@ -12,5 +12,5 @@ class FixDffEnableTask(DebugCircuitTask):
     bound = 10
     tier = "2"
     tier_label = "Simple Sequential"
-    num_properties = 2
+    num_properties = 4
     bug_description = "DFF output updates even when enable=0 (enable signal ignored)"

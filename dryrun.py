@@ -604,6 +604,21 @@ Do NOT remove, rename, or weaken any assertions. Do NOT try to access /root_data
     errors = []
     start_time = time.time()
 
+    # Detect docker/podman and check if image exists (needed for container startup below)
+    image_name = env_dir.resolve().name.replace("_", "-").replace(" ", "-").lower()
+    _docker_cmd = shutil.which("docker") or shutil.which("podman") or "docker"
+    docker_available = shutil.which("docker") is not None or shutil.which("podman") is not None
+    docker_image_exists = False
+    if docker_available:
+        try:
+            r = subprocess.run(
+                [_docker_cmd, "image", "inspect", image_name],
+                capture_output=True, timeout=10,
+            )
+            docker_image_exists = r.returncode == 0
+        except Exception:
+            pass
+
     # Start a persistent Docker container for bash commands (if image exists).
     # This gives the student real ebmc + correct paths — no local install needed.
     container_id = None
@@ -628,6 +643,19 @@ Do NOT remove, rename, or weaken any assertions. Do NOT try to access /root_data
                 errors.append(f"Could not start container: {r.stderr[:100]}")
         except Exception as e:
             errors.append(f"Container start error: {e}")
+
+    # Resolve config path once (used for step rewards during edit_file)
+    _step_reward_config = None
+    if docker_image_exists:
+        _config_dir = env_dir / "root_data" / "eval" / "configs"
+        if _config_dir.exists():
+            _cfgs = sorted(_config_dir.glob("*.json"))
+            for _c in _cfgs:
+                if task["id"] in _c.stem or _c.stem.replace("-", "_") in task["id"].replace("-", "_"):
+                    _step_reward_config = f"/root_data/eval/configs/{_c.name}"
+                    break
+            if not _step_reward_config and _cfgs:
+                _step_reward_config = f"/root_data/eval/configs/{_cfgs[0].name}"
 
     print(f"  Running student agent...")
 
@@ -761,6 +789,25 @@ Do NOT remove, rename, or weaken any assertions. Do NOT try to access /root_data
                         else:
                             target.write_text(text.replace(old_str, new_str, 1))
                             content = "File updated successfully."
+                            # Step reward: run scoring after each successful edit
+                            if container_id and _step_reward_config:
+                                try:
+                                    sr = subprocess.run(
+                                        [_docker_cmd, "exec", "-u", "root", container_id,
+                                         "bash", "-c",
+                                         f"/root/.venv/bin/python /root_data/eval/scoring.py "
+                                         f"{_step_reward_config} /tmp/step_score.json && "
+                                         f"cat /tmp/step_score.json"],
+                                        capture_output=True, text=True, timeout=30,
+                                    )
+                                    if sr.returncode == 0 and sr.stdout.strip():
+                                        sd = json.loads(sr.stdout.strip())
+                                        step_score = sd.get("score", 0)
+                                        proved = sd.get("metadata", {}).get("ebmc_proved", "?")
+                                        total = sd.get("metadata", {}).get("num_expected_properties", "?")
+                                        content += f"\n[Step score: {step_score:.3f} ({proved}/{total} properties proved)]"
+                                except Exception:
+                                    pass
                     messages.append({
                         "role": "tool",
                         "tool_call_id": tc.id,
@@ -803,20 +850,7 @@ Do NOT remove, rename, or weaken any assertions. Do NOT try to access /root_data
     score_output = workdir / "score_output.json"
     scored_via = "none"
 
-    # Check if Docker image exists for this env
-    image_name = env_dir.resolve().name.replace("_", "-").replace(" ", "-").lower()
-    _docker_cmd = shutil.which("docker") or shutil.which("podman") or "docker"
-    docker_available = shutil.which("docker") is not None or shutil.which("podman") is not None
-    docker_image_exists = False
-    if docker_available:
-        try:
-            r = subprocess.run(
-                [_docker_cmd, "image", "inspect", image_name],
-                capture_output=True, timeout=10,
-            )
-            docker_image_exists = r.returncode == 0
-        except Exception:
-            pass
+    # (docker_image_exists, image_name, _docker_cmd set earlier before container start)
 
     if docker_image_exists:
         # Score INSIDE the container — has ebmc, correct paths

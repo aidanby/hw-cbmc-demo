@@ -12,5 +12,5 @@ class FixShiftDirTask(DebugCircuitTask):
     bound = 10
     tier = "2"
     tier_label = "Simple Sequential"
-    num_properties = 2
+    num_properties = 4
     bug_description = "shift register shifts left when it should shift right"

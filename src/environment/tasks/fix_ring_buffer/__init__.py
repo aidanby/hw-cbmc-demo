@@ -12,5 +12,5 @@ class FixRingBufferTask(DebugCircuitTask):
     bound = 10
     tier = "3"
     tier_label = "FSM / Multi-register"
-    num_properties = 3
+    num_properties = 4
     bug_description = "ring buffer: count increments on read instead of decrement"
