@@ -33,26 +33,6 @@ The EBMC results are translated into a dense reward signal for Reinforcement Lea
 * **Final Score:** A continuous scalar in [0, 1] determined by proved fraction through a calibrated sigmoid. Most tasks use center=0.55; tasks where some properties hold on the buggy code use center=0.75 to ensure a meaningful gradient.
 * **Efficiency:** Scoring is based on property correctness only — tool call count does not affect the score.
 
-## Student Tools
-
-The student agent operates in a sandboxed bash environment with three tools:
-
-| Tool | What it does |
-|------|-------------|
-| `bash` | Run shell commands. Read files, run EBMC, check output. |
-| `view_lines_in_file` | Read specific line ranges from a file. |
-| `replace_in_file` | Edit a file by replacing an exact string match. |
-
-The student can read `/workdir/data/` (workspace) and `/workdir/shared/` (reference). It cannot read `/root_data/` (scoring, configs).
-
-Typical workflow:
-
-1. `bash: cat /workdir/data/FixCounterReset.sv` — read the buggy file
-2. `bash: ebmc /workdir/data/FixCounterReset.sv --bound 10` — see which properties are REFUTED and read the counterexample
-3. `replace_in_file` — fix the logic error
-4. `bash: ebmc /workdir/data/FixCounterReset.sv --bound 10` — verify all properties PROVED
-5. Repeat until exit code 0 (all PROVED)
-
 ## Task List
 
 | Task | Description | Language | Properties |
@@ -70,18 +50,40 @@ Typical workflow:
 | fix-smv-counter | NuSMV counter increments by 2 instead of 1 | NuSMV | 2 |
 | fix-smv-onehot | NuSMV one-hot FSM: wrong next-state for s1 | NuSMV | 3 |
 
+## Scoring Reproducibility
+
+Scores are fully deterministic. EBMC is a SAT-based model checker with no randomness — the same circuit produces identical PROVED/REFUTED outcomes on every run. Verified: running the same student submission 10 times produces identical scores (stdev = 0.0).
+
+## Student Tools
+
+The student agent operates in a sandboxed bash environment with three tools:
+
+| Tool | What it does |
+|------|-------------|
+| `bash` | Run shell commands. Read files, run tests, check output. |
+| `view_lines_in_file` | Read specific line ranges from a file. |
+| `replace_in_file` | Edit a file by replacing an exact string match. |
+
+The student can read `/workdir/data/` (workspace) and `/workdir/shared/` (reference). It cannot read `/root_data/` (scoring, configs).
+
+Typical workflow:
+
+1. Read the task file in `/workdir/data/`
+2. Edit it using `replace_in_file`
+3. Verify using `bash`
+
 ## Setup
 
-Requires Docker or Podman. No GPU or special hardware.
+Requires Docker. No GPU or special hardware.
 
 ```bash
-cd hw-cbmc-demo
-podman build -f Containerfile -t hw-cbmc-demo .   # build the scoring container
+./run.sh build    # build the scoring container
+./run.sh list     # list available tasks
 ```
 
 ## RL Training Integration
 
-### Docker / Podman
+### Docker
 
 ```bash
 ./rl_wrapper.sh . <task_id> /tmp/student_workspace
@@ -101,21 +103,20 @@ kubectl logs job/rl-episode
 
 | Path | Access | Contents |
 |------|--------|----------|
-| `/root_data/` | Root only (0700) | Scoring scripts, eval configs, assertion hashes |
+| `/root_data/` | Root only (0700) | Scoring scripts, eval configs |
 | `/workdir/shared/` | Read-only | Reference material |
-| `/workdir/data/` | Read/write | Student workspace (buggy files) |
+| `/workdir/data/` | Read/write | Student workspace |
 
 Production: `read_only: true`, `network_mode: none`, `cap_drop: ALL`, `no-new-privileges`.
 
-## Scoring Reproducibility
-
-Scores are fully deterministic. EBMC is a SAT-based model checker with no randomness — the same circuit produces identical PROVED/REFUTED outcomes on every run. Verified: running the same student submission 10 times produces identical scores (stdev = 0.0).
-
 ## Baseline Results
 
-All 12 tasks validated against oracle fixes:
+Scores below show the **unmodified buggy files** submitted without any fix — the floor each task starts from. A fully fixed file scores 1.0 on every task. Red = hard (near-zero without a fix), green = easier to partially score.
 
-| Condition | Score Range |
+![Performance heatmap](scores.svg)
+
+| Condition | Score range |
 |-----------|-------------|
 | Buggy file (no fix) | 0.01 – 0.41 |
-| Oracle fix applied | 1.0 (all tasks) |
+| Oracle fix applied  | 1.0 (all 12 tasks) |
+

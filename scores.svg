@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="334" height="459" font-family="ui-monospace,monospace" font-size="10">
+<style>text{fill:#1f2328}@media(prefers-color-scheme:dark){.bg{fill:#161b22}text{fill:#e6edf3}.cell{fill:#1f2328 !important}.dim{fill:#8b949e !important}.sep{stroke:#30363d}}</style>
+<rect class="bg" width="334" height="459" fill="#fff" rx="5"/>
+<text x="228.5" y="12" text-anchor="middle" font-weight="bold" font-size="10">unmodified</text>
+<text x="228.5" y="22" text-anchor="middle" font-size="7" class="dim" fill="#888">N=1 runs</text>
+<text x="228.5" y="33" text-anchor="middle" font-size="7" fill="#f59e0b" font-weight="bold">6/12 solved (50%)</text>
+<text x="228.5" y="44" text-anchor="middle" font-size="7" class="dim" fill="#888">avg 0.14</text>
+<text x="164.5" y="58" text-anchor="middle" class="dim" fill="#666" font-size="8">score</text>
+<text x="228.5" y="58" text-anchor="middle" class="dim" fill="#666" font-size="8">time</text>
+<text x="292.5" y="58" text-anchor="middle" class="dim" fill="#666" font-size="8">tools</text>
+<line x1="0" y1="67" x2="334" y2="67" class="sep" stroke="#ddd" stroke-width="0.5"/>
+<circle cx="46.5" cy="10" r="3" fill="#22c55e" opacity="0.85"/>
+<text x="52.5" y="13" font-size="7" fill="#888">easy</text>
+<circle cx="84.5" cy="10" r="3" fill="#f59e0b" opacity="0.85"/>
+<text x="90.5" y="13" font-size="7" fill="#888">medium</text>
+<circle cx="122.5" cy="10" r="3" fill="#ef4444" opacity="0.85"/>
+<text x="128.5" y="13" font-size="7" fill="#888">hard</text>
+<circle cx="7" cy="86" r="4" fill="#22c55e" opacity="0.8"/>
+<text x="15" y="88" font-size="9">fix-dff-enable</text>
+<rect x="133.5" y="71" width="62" height="30" fill="#b0ffb0" rx="2"/>
+<text class="cell" x="164.5" y="84" text-anchor="middle" font-size="10">0.41</text>
+<rect x="197.5" y="71" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="228.5" y="84" text-anchor="middle" font-size="10">-</text>
+<rect x="261.5" y="71" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="292.5" y="84" text-anchor="middle" font-size="10">-</text>
+<circle cx="7" cy="118" r="4" fill="#22c55e" opacity="0.8"/>
+<text x="15" y="120" font-size="9">fix-arbiter-fair</text>
+<rect x="133.5" y="103" width="62" height="30" fill="#b0ffb0" rx="2"/>
+<text class="cell" x="164.5" y="116" text-anchor="middle" font-size="10">0.39</text>
+<rect x="197.5" y="103" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="228.5" y="116" text-anchor="middle" font-size="10">-</text>
+<rect x="261.5" y="103" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="292.5" y="116" text-anchor="middle" font-size="10">-</text>
+<circle cx="7" cy="150" r="4" fill="#22c55e" opacity="0.8"/>
+<text x="15" y="152" font-size="9">fix-traffic-light</text>
+<rect x="133.5" y="135" width="62" height="30" fill="#b0ffb0" rx="2"/>
+<text class="cell" x="164.5" y="148" text-anchor="middle" font-size="10">0.39</text>
+<rect x="197.5" y="135" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="228.5" y="148" text-anchor="middle" font-size="10">-</text>
+<rect x="261.5" y="135" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="292.5" y="148" text-anchor="middle" font-size="10">-</text>
+<circle cx="7" cy="182" r="4" fill="#22c55e" opacity="0.8"/>
+<text x="15" y="184" font-size="9">fix-counter-wrap</text>
+<rect x="133.5" y="167" width="62" height="30" fill="#b0ffb0" rx="2"/>
+<text class="cell" x="164.5" y="180" text-anchor="middle" font-size="10">0.15</text>
+<rect x="197.5" y="167" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="228.5" y="180" text-anchor="middle" font-size="10">-</text>
+<rect x="261.5" y="167" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="292.5" y="180" text-anchor="middle" font-size="10">-</text>
+<circle cx="7" cy="214" r="4" fill="#22c55e" opacity="0.8"/>
+<text x="15" y="216" font-size="9">fix-decoder</text>
+<rect x="133.5" y="199" width="62" height="30" fill="#b0ffb0" rx="2"/>
+<text class="cell" x="164.5" y="212" text-anchor="middle" font-size="10">0.15</text>
+<rect x="197.5" y="199" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="228.5" y="212" text-anchor="middle" font-size="10">-</text>
+<rect x="261.5" y="199" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="292.5" y="212" text-anchor="middle" font-size="10">-</text>
+<circle cx="7" cy="246" r="4" fill="#22c55e" opacity="0.8"/>
+<text x="15" y="248" font-size="9">fix-smv-onehot</text>
+<rect x="133.5" y="231" width="62" height="30" fill="#b0ffb0" rx="2"/>
+<text class="cell" x="164.5" y="244" text-anchor="middle" font-size="10">0.15</text>
+<rect x="197.5" y="231" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="228.5" y="244" text-anchor="middle" font-size="10">-</text>
+<rect x="261.5" y="231" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="292.5" y="244" text-anchor="middle" font-size="10">-</text>
+<circle cx="7" cy="278" r="4" fill="#ef4444" opacity="0.8"/>
+<text x="15" y="280" font-size="9">fix-adder-carry</text>
+<rect x="133.5" y="263" width="62" height="30" fill="#ffb3b3" rx="2"/>
+<text class="cell" x="164.5" y="276" text-anchor="middle" font-size="10">0.01</text>
+<rect x="197.5" y="263" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="228.5" y="276" text-anchor="middle" font-size="10">-</text>
+<rect x="261.5" y="263" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="292.5" y="276" text-anchor="middle" font-size="10">-</text>
+<circle cx="7" cy="310" r="4" fill="#ef4444" opacity="0.8"/>
+<text x="15" y="312" font-size="9">fix-counter-reset</text>
+<rect x="133.5" y="295" width="62" height="30" fill="#ffb3b3" rx="2"/>
+<text class="cell" x="164.5" y="308" text-anchor="middle" font-size="10">0.01</text>
+<rect x="197.5" y="295" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="228.5" y="308" text-anchor="middle" font-size="10">-</text>
+<rect x="261.5" y="295" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="292.5" y="308" text-anchor="middle" font-size="10">-</text>
+<circle cx="7" cy="342" r="4" fill="#ef4444" opacity="0.8"/>
+<text x="15" y="344" font-size="9">fix-mux-select</text>
+<rect x="133.5" y="327" width="62" height="30" fill="#ffb3b3" rx="2"/>
+<text class="cell" x="164.5" y="340" text-anchor="middle" font-size="10">0.01</text>
+<rect x="197.5" y="327" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="228.5" y="340" text-anchor="middle" font-size="10">-</text>
+<rect x="261.5" y="327" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="292.5" y="340" text-anchor="middle" font-size="10">-</text>
+<circle cx="7" cy="374" r="4" fill="#ef4444" opacity="0.8"/>
+<text x="15" y="376" font-size="9">fix-ring-buffer</text>
+<rect x="133.5" y="359" width="62" height="30" fill="#ffb3b3" rx="2"/>
+<text class="cell" x="164.5" y="372" text-anchor="middle" font-size="10">0.01</text>
+<rect x="197.5" y="359" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="228.5" y="372" text-anchor="middle" font-size="10">-</text>
+<rect x="261.5" y="359" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="292.5" y="372" text-anchor="middle" font-size="10">-</text>
+<circle cx="7" cy="406" r="4" fill="#ef4444" opacity="0.8"/>
+<text x="15" y="408" font-size="9">fix-shift-dir</text>
+<rect x="133.5" y="391" width="62" height="30" fill="#ffb3b3" rx="2"/>
+<text class="cell" x="164.5" y="404" text-anchor="middle" font-size="10">0.01</text>
+<rect x="197.5" y="391" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="228.5" y="404" text-anchor="middle" font-size="10">-</text>
+<rect x="261.5" y="391" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="292.5" y="404" text-anchor="middle" font-size="10">-</text>
+<circle cx="7" cy="438" r="4" fill="#ef4444" opacity="0.8"/>
+<text x="15" y="440" font-size="9">fix-smv-counter</text>
+<rect x="133.5" y="423" width="62" height="30" fill="#ffb3b3" rx="2"/>
+<text class="cell" x="164.5" y="436" text-anchor="middle" font-size="10">0.01</text>
+<rect x="197.5" y="423" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="228.5" y="436" text-anchor="middle" font-size="10">-</text>
+<rect x="261.5" y="423" width="62" height="30" fill="#e8e8e8" rx="2"/>
+<text class="cell" x="292.5" y="436" text-anchor="middle" font-size="10">-</text>
+</svg>

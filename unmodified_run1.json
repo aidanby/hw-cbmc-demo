@@ -1,0 +1,16 @@
+{
+  "results": [
+    {"task": "fix-counter-reset",  "score": 0.0125, "time_seconds": null, "tool_calls_total": null},
+    {"task": "fix-adder-carry",    "score": 0.0125, "time_seconds": null, "tool_calls_total": null},
+    {"task": "fix-mux-select",     "score": 0.0125, "time_seconds": null, "tool_calls_total": null},
+    {"task": "fix-ring-buffer",    "score": 0.0125, "time_seconds": null, "tool_calls_total": null},
+    {"task": "fix-shift-dir",      "score": 0.0125, "time_seconds": null, "tool_calls_total": null},
+    {"task": "fix-smv-counter",    "score": 0.0125, "time_seconds": null, "tool_calls_total": null},
+    {"task": "fix-counter-wrap",   "score": 0.1543, "time_seconds": null, "tool_calls_total": null},
+    {"task": "fix-decoder",        "score": 0.1543, "time_seconds": null, "tool_calls_total": null},
+    {"task": "fix-smv-onehot",     "score": 0.1543, "time_seconds": null, "tool_calls_total": null},
+    {"task": "fix-traffic-light",  "score": 0.3852, "time_seconds": null, "tool_calls_total": null},
+    {"task": "fix-arbiter-fair",   "score": 0.3852, "time_seconds": null, "tool_calls_total": null},
+    {"task": "fix-dff-enable",     "score": 0.4123, "time_seconds": null, "tool_calls_total": null}
+  ]
+}
