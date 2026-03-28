@@ -18,6 +18,12 @@ from environment.tasks.fix_smv_onehot import FixSmvOnehotTask
 from environment.tasks.fix_priority_enc import FixPriorityEncTask
 from environment.tasks.fix_fibonacci import FixFibonacciTask
 from environment.tasks.fix_lfsr import FixLFSRTask
+from environment.tasks.fix_gray_counter import FixGrayCounterTask
+from environment.tasks.fix_crc8 import FixCRC8Task
+from environment.tasks.fix_hamming import FixHammingTask
+from environment.tasks.fix_barrel_shift import FixBarrelShiftTask
+from environment.tasks.fix_smv_ring3 import FixSmvRing3Task
+from environment.tasks.fix_smv_mod8 import FixSmvMod8Task
 
 __all__ = [
     "FixAdderCarryTask",
@@ -35,4 +41,10 @@ __all__ = [
     "FixPriorityEncTask",
     "FixFibonacciTask",
     "FixLFSRTask",
+    "FixGrayCounterTask",
+    "FixCRC8Task",
+    "FixHammingTask",
+    "FixBarrelShiftTask",
+    "FixSmvRing3Task",
+    "FixSmvMod8Task",
 ]

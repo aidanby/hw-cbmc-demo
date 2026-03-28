@@ -1,0 +1,20 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixBarrelShift.sv",
+  "top_module": "barrel_shift",
+  "bound": 1,
+  "timeout_seconds": 30,
+  "num_expected_properties": 4,
+  "property_names": [
+    "p_zero",
+    "p_one",
+    "p_four",
+    "p_seven"
+  ],
+  "module_signature": "module barrel_shift(input [7:0] in, input [2:0] sel, output reg [7:0] out)",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "fc39263326fab286d2ae3941610fecb6c3c0fa3add5c7cee8b6e8e46cad68b19"
+}

@@ -1,0 +1,41 @@
+-- Token-ring mutual exclusion: 3 processes share a rotating token.
+-- Only the process holding the token may enter its critical section.
+-- The token is not rotating correctly so one process can starve.
+MODULE main
+VAR
+  token : {p0, p1, p2};
+  s0 : {idle, crit};
+  s1 : {idle, crit};
+  s2 : {idle, crit};
+ASSIGN
+  init(token) := p0;
+  init(s0) := idle;
+  init(s1) := idle;
+  init(s2) := idle;
+
+  next(token) := case
+    token = p0 : p1;
+    token = p1 : p0;   -- Bug: should be p2
+    token = p2 : p0;
+  esac;
+
+  next(s0) := case
+    token = p0 : crit;
+    token != p0 : idle;
+    TRUE : s0;
+  esac;
+  next(s1) := case
+    token = p1 : crit;
+    token != p1 : idle;
+    TRUE : s1;
+  esac;
+  next(s2) := case
+    token = p2 : crit;
+    token != p2 : idle;
+    TRUE : s2;
+  esac;
+
+LTLSPEC G !(s0 = crit & s1 = crit);
+LTLSPEC G F (s0 = crit);
+LTLSPEC G F (s1 = crit);
+LTLSPEC G F (s2 = crit);

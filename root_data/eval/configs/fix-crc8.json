@@ -1,0 +1,19 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixCRC8.sv",
+  "top_module": "crc8",
+  "bound": 15,
+  "timeout_seconds": 60,
+  "num_expected_properties": 3,
+  "property_names": [
+    "p_reset",
+    "p_feedback",
+    "p_shift"
+  ],
+  "module_signature": "module crc8(input clk, input reset, input din, output reg [7:0] crc)",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "db71d443d11e7defdaa679292b0656b76e0acc5ae966a156c00c2a1ce31cb056"
+}

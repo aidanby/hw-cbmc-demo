@@ -1,0 +1,17 @@
+-- Modulo-8 counter with a safety property and two liveness properties.
+-- The counter should visit all values 0..7 in sequence and wrap around.
+-- The counter has two bugs causing wrong values to be visited.
+MODULE main
+VAR
+  x : 0..7;
+ASSIGN
+  init(x) := 0;
+  next(x) := case
+    x = 7 : 1;         -- Bug: should be 0 (wrap to 0, not 1)
+    TRUE   : x + 2;    -- Bug: should be x + 1 (step by 1, not 2)
+  esac;
+
+LTLSPEC G F (x = 0);
+LTLSPEC G F (x = 3);
+LTLSPEC G F (x = 7);
+LTLSPEC G (x <= 7);

@@ -1,0 +1,17 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/fix-smv-ring3.smv",
+  "top_module": "main",
+  "bound": 20,
+  "timeout_seconds": 60,
+  "num_expected_properties": 4,
+  "property_names": [
+    "LTLSPEC"
+  ],
+  "module_signature": "",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "e4ab772d2626520ce1028d2b3a5f080422a38747aed6dc3dbcb84722218972ae"
+}

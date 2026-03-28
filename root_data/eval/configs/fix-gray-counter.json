@@ -1,0 +1,19 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixGrayCounter.sv",
+  "top_module": "gray_counter",
+  "bound": 20,
+  "timeout_seconds": 60,
+  "num_expected_properties": 3,
+  "property_names": [
+    "p_reset",
+    "p_step",
+    "p_formula"
+  ],
+  "module_signature": "module gray_counter(input clk, input reset, output reg [3:0] gray)",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "181b602efcbb37dd4ab5ab6a6b806fe263da8b4f1b2dae8291a440109c4a1ade"
+}

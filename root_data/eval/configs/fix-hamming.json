@@ -1,0 +1,19 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixHamming.sv",
+  "top_module": "hamming74",
+  "bound": 1,
+  "timeout_seconds": 30,
+  "num_expected_properties": 3,
+  "property_names": [
+    "p_p1",
+    "p_p2",
+    "p_p4"
+  ],
+  "module_signature": "module hamming74(input [3:0] d, output [6:0] cw)",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "56f325ebf466f45a1b2d7a30719136cd6fd8b354bcfd7d8cf311053b1b6449ef"
+}
