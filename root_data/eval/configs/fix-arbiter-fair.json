@@ -12,8 +12,8 @@
   ],
   "module_signature": "module arbiter_fair(input clk, input reset, input req0, req1, output reg grant0, output reg grant1)",
   "scoring": {
-    "sigmoid_center": 0.55,
+    "sigmoid_center": 0.75,
     "sigmoid_scale": 8.0
   },
-  "assertion_body_hash": "c1a274bf1934af4847fe8d66debd1344dcd1fa9d5088de8400e9e4f7076225dc"
+  "assertion_body_hash": "1b7f8bddd179a7117ebf9318e2d2657bbebb8624f0cadb4748365a9ff1982620"
 }

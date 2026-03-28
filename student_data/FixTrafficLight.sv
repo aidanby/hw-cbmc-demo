@@ -24,6 +24,6 @@ module traffic_light(input clk, input reset, output reg [1:0] state);
   end
 
   p_valid:      assert property (@(posedge clk) state inside {RED, RED_YELLOW, GREEN, YELLOW});
-  p_redy_to_g:  assert property (@(posedge clk) state == RED_YELLOW |=> state == GREEN);
+  p_redy_to_g:  assert property (@(posedge clk) state == RED_YELLOW && !reset |=> state == GREEN);
   p_yellow_to_r: assert property (@(posedge clk) state == YELLOW |=> state == RED);
 endmodule

@@ -31,6 +31,6 @@ module arbiter_fair(input clk, input reset,
   end
 
   p_mutex:  assert property (@(posedge clk) !(grant0 && grant1));
-  p_fair0:  assert property (@(posedge clk) req0 && req1 && turn == 1 |=> grant1);
-  p_fair1:  assert property (@(posedge clk) req0 && req1 && turn == 0 |=> grant0);
+  p_fair0:  assert property (@(posedge clk) req0 && req1 && !reset && turn == 1 |=> grant1);
+  p_fair1:  assert property (@(posedge clk) req0 && req1 && !reset && turn == 0 |=> grant0);
 endmodule
