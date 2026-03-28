@@ -1,5 +1,5 @@
 -- One-hot FSM with 3 states forming a cycle: s0 -> s1 -> s2 -> s0.
--- The FSM is violating its one-hot invariant on some transitions.
+-- The FSM is violating its one-hot invariant and transition rules.
 
 MODULE main
 VAR
@@ -12,9 +12,9 @@ ASSIGN
   init(s2) := FALSE;
 
   next(s0) := s2;
-  next(s1) := s0 | s2;
-  next(s2) := s1;
+  next(s1) := s0 | s2; 
+  next(s2) := s0;       
 
 LTLSPEC G ((s0 & !s1 & !s2) | (!s0 & s1 & !s2) | (!s0 & !s1 & s2));
-LTLSPEC G (s2 -> X !s1);
-LTLSPEC G (s2 -> X s0);
+LTLSPEC G F s2;
+LTLSPEC G (s1 -> X s2);

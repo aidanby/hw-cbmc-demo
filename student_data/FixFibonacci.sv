@@ -1,6 +1,6 @@
 // Fibonacci generator: outputs successive Fibonacci numbers each clock cycle.
 // Sequence after reset: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
-// The module has 3 bugs: wrong reset values and wrong recurrence step.
+// The module is not generating the correct Fibonacci sequence.
 module fibonacci(input clk, input reset, output reg [7:0] curr);
   reg [7:0] prev;
 
@@ -11,11 +11,11 @@ module fibonacci(input clk, input reset, output reg [7:0] curr);
 
   always @(posedge clk) begin
     if (reset) begin
-      curr <= 1;  // Bug 1: should be 0
-      prev <= 0;  // Bug 2: should be 1
+      curr <= 1;
+      prev <= 0;
     end else begin
       prev <= curr;
-      curr <= prev;  // Bug 3: should be prev + curr
+      curr <= prev;
     end
   end
 

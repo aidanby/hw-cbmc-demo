@@ -1,12 +1,13 @@
 -- Counter over the range 0..15 that should visit every value in sequence.
--- The counter is not visiting all values as expected by the liveness properties.
+-- The counter is not visiting all values as expected.
 
 MODULE main
 VAR
   x : 0..15;
 ASSIGN
-  init(x) := 0;
+  init(x) := 4;    
   next(x) := x + 4;
 
+LTLSPEC x = 0;
 LTLSPEC G F (x = 1);
 LTLSPEC G F (x = 3);
