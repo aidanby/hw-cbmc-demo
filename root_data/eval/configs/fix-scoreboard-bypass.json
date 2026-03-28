@@ -1,0 +1,24 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixScoreboardBypass.sv",
+  "top_module": "bypass_pipe",
+  "bound": 10,
+  "timeout_seconds": 120,
+  "num_expected_properties": 8,
+  "property_names": [
+    "p_reset",
+    "p_load",
+    "p_bypass_cond",
+    "p_bypass_val",
+    "p_no_bypass_inc",
+    "p_regfile_wr",
+    "p_src_reg0",
+    "p_wb_dest"
+  ],
+  "module_signature": "module bypass_pipe( input clk, input reset, input [1:0] rs, rd, input op, input [7:0] imm_in, output reg [7:0] result )",
+  "scoring": {
+    "sigmoid_center": 0.75,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "6f60c529fbad60d0ce96a0278c9bf8bed2a16e435b7f9ef1413f00040bd51973"
+}

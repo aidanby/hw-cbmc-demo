@@ -1,0 +1,23 @@
+{
+  "task_type": "implement_module",
+  "sv_file": "/workdir/data/ImplementAxiHandshake.sv",
+  "top_module": "axi_write_ctrl",
+  "bound": 10,
+  "timeout_seconds": 120,
+  "num_expected_properties": 6,
+  "property_names": [
+    "p_aw_valid",
+    "p_w_valid",
+    "p_reset",
+    "p_bresp_pulse",
+    "p_no_stall",
+    "p_both_resp"
+  ],
+  "module_signature": "module axi_write_ctrl( input clk, input reset, input awvalid, input wvalid, output reg awready, output reg wready, output reg bresp_valid )",
+  "scoring": {
+    "sigmoid_center": 0.75,
+    "sigmoid_scale": 8.0
+  },
+  "expected_assume_count": 2,
+  "assertion_body_hash": "d67bf863f8399f9eb550382cf54347eaf569e0c3cf6a2793c0da720ede70b378"
+}

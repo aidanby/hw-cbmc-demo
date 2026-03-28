@@ -1,0 +1,21 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixPipelineAlu.sv",
+  "top_module": "pipe_alu",
+  "bound": 8,
+  "timeout_seconds": 60,
+  "num_expected_properties": 5,
+  "property_names": [
+    "p_reset",
+    "p_add",
+    "p_sub",
+    "p_and",
+    "p_or"
+  ],
+  "module_signature": "module pipe_alu( input clk, input reset, input [7:0] a_in, b_in, input [1:0] op, output reg [7:0] result )",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "ea37fb78762c8c232e2864a4ce8454aae5ad3c0ef10bc807f7009810efd82d7a"
+}

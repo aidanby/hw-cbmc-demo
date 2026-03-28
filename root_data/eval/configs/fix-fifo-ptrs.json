@@ -1,0 +1,23 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixFifoPtrs.sv",
+  "top_module": "fifo8",
+  "bound": 10,
+  "timeout_seconds": 120,
+  "num_expected_properties": 7,
+  "property_names": [
+    "p_reset",
+    "p_count_wr",
+    "p_count_rd",
+    "p_count_rw",
+    "p_data_rt",
+    "p_wr_ptr_inc",
+    "p_rd_ptr_inc"
+  ],
+  "module_signature": "module fifo8( input clk, input reset, input wr_en, input [7:0] din, input rd_en, output reg [7:0] dout, output full, output empty )",
+  "scoring": {
+    "sigmoid_center": 0.75,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "6e4172ea57367345d274fab6007d05f592da6de619d8f542921f2e59aea521c0"
+}

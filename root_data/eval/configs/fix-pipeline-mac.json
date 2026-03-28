@@ -1,0 +1,22 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixPipelineMac.sv",
+  "top_module": "pipe_mac",
+  "bound": 10,
+  "timeout_seconds": 120,
+  "num_expected_properties": 6,
+  "property_names": [
+    "p_reset",
+    "p_prod",
+    "p_accum",
+    "p_clear_eff",
+    "p_mul_3x5",
+    "p_mul_7x2"
+  ],
+  "module_signature": "module pipe_mac( input clk, input reset, input [7:0] a_in, b_in, input clear_acc, output reg [15:0] acc )",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "6c2ad480afb0a51f9e9ee59e1c3c5ee1f7e5ecd45dcab540cb4c18f5f5446c69"
+}

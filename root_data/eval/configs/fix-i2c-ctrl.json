@@ -1,0 +1,22 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixI2cCtrl.sv",
+  "top_module": "i2c_master",
+  "bound": 12,
+  "timeout_seconds": 120,
+  "num_expected_properties": 6,
+  "property_names": [
+    "p_reset",
+    "p_done_pulse",
+    "p_send_0",
+    "p_send_1",
+    "p_msb_order",
+    "p_ack_sense"
+  ],
+  "module_signature": "module i2c_master( input clk, input reset, input go, input [7:0] addr, output reg scl_oe, output reg sda_oe, input sda_in, output reg done, output reg ack_ok )",
+  "scoring": {
+    "sigmoid_center": 0.75,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "a1de6fb93db0ff04302427b972914dbf8c2d8c9b5d65c12bdd8f14414dd51097"
+}

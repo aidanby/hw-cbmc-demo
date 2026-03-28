@@ -1,0 +1,20 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixWatchdog.sv",
+  "top_module": "watchdog",
+  "bound": 20,
+  "timeout_seconds": 60,
+  "num_expected_properties": 4,
+  "property_names": [
+    "p_reset",
+    "p_kick_clr",
+    "p_fires_15",
+    "p_no_skip_15"
+  ],
+  "module_signature": "module watchdog( input clk, input reset, input kick, output reg wdt_reset )",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "d2d8cfef4b94519d11ac11f51992f724ccbe326a28896552fbad866ec5285929"
+}

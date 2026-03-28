@@ -1,0 +1,23 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixDmaEngine.sv",
+  "top_module": "dma_engine",
+  "bound": 12,
+  "timeout_seconds": 120,
+  "num_expected_properties": 7,
+  "property_names": [
+    "p_reset",
+    "p_addr0_inc",
+    "p_ch0_done",
+    "p_ch1_done",
+    "p_turn_flip",
+    "p_no_starve",
+    "p_mutex"
+  ],
+  "module_signature": "module dma_engine( input clk, input reset, // Channel 0 input go0, input [7:0] src0, input [3:0] len0, // Channel 1 input go1, input [7:0] src1, input [3:0] len1, // Bus output output reg [7:0] bus_addr, output reg bus_req, output reg ch0_done, output reg ch1_done )",
+  "scoring": {
+    "sigmoid_center": 0.75,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "79ff3d0d7e07b07a488762271b09883caef1a22166b020d4d4e5d3550afd2f82"
+}

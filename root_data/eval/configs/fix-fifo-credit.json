@@ -1,0 +1,23 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixFifoCredit.sv",
+  "top_module": "fifo_credit",
+  "bound": 10,
+  "timeout_seconds": 120,
+  "num_expected_properties": 7,
+  "property_names": [
+    "p_reset",
+    "p_credit_wr",
+    "p_credit_rd",
+    "p_credit_rw",
+    "p_invariant",
+    "p_no_overflow",
+    "p_data_rt"
+  ],
+  "module_signature": "module fifo_credit( input clk, input reset, input wr_en, input [7:0] din, input rd_en, output reg [7:0] dout, output full, output empty )",
+  "scoring": {
+    "sigmoid_center": 0.75,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "02681ece76ba385f5495d6bbb6678351c566f62175081f382ce557f703c27c3c"
+}

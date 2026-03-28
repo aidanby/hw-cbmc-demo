@@ -1,0 +1,25 @@
+{
+  "task_type": "implement_module",
+  "sv_file": "/workdir/data/ImplementArb3.sv",
+  "top_module": "arb3",
+  "bound": 10,
+  "timeout_seconds": 60,
+  "num_expected_properties": 9,
+  "property_names": [
+    "p_mutex01",
+    "p_mutex02",
+    "p_mutex12",
+    "p_req0_only",
+    "p_req1_only",
+    "p_req2_only",
+    "p_rr_01",
+    "p_rr_12",
+    "p_turn_adv"
+  ],
+  "module_signature": "module arb3( input clk, input reset, input req0, req1, req2, output reg grant0, grant1, grant2 )",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "fbeb8d1c0cfccc94f1aa767c1c57998e83d588b9cc70a979a69c3b4a7e8d34c2"
+}

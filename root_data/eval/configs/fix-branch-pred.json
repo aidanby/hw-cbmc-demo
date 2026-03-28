@@ -1,0 +1,23 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixBranchPred.sv",
+  "top_module": "branch_pred",
+  "bound": 10,
+  "timeout_seconds": 120,
+  "num_expected_properties": 7,
+  "property_names": [
+    "p_reset",
+    "p_pred_read",
+    "p_threshold",
+    "p_not_taken",
+    "p_inc_taken",
+    "p_dec_ntaken",
+    "p_saturate3"
+  ],
+  "module_signature": "module branch_pred( input clk, input reset, // Predict side input [7:0] pc_in, output reg predict_taken, // Update side input update_en, input [7:0] update_pc, input was_taken )",
+  "scoring": {
+    "sigmoid_center": 0.75,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "7e2b7ca24883e85c92c6f7110beb6b5ae64e8564289f42abe9f879ac929341c3"
+}

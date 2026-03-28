@@ -426,14 +426,27 @@ def main():
         return
 
     # ── ANTI-CHEAT 8: assume / restrict / INVAR injection ───────────
+    # Some tasks include environment-constraint assumes (e.g. AXI valid-hold).
+    # Config may set "expected_assume_count" to whitelist them.
+    expected_assumes = config.get("expected_assume_count", 0)
     if _has_assume_restrict(source, is_smv=is_smv):
-        metadata["cheat"] = "assume_inject"
-        metadata["error"] = (
-            "assume/restrict constraint injection detected (SV) or "
-            "INVAR/TRANS/FAIRNESS constraint injection detected (SMV)"
-        )
-        _write_result(output_path, 0.0, metadata)
-        return
+        # Count actual assume property statements
+        if is_smv:
+            actual_assumes = len(re.findall(
+                r'^\s*(?:INVAR|TRANS|FAIRNESS)\b',
+                _strip_smv_comments(source), re.MULTILINE))
+        else:
+            actual_assumes = len(re.findall(
+                r'\bassume\s+(?:property\s*)?\(',
+                _strip_sv_comments(source)))
+        if actual_assumes > expected_assumes:
+            metadata["cheat"] = "assume_inject"
+            metadata["error"] = (
+                f"assume/restrict injection: found {actual_assumes} "
+                f"assume(s), expected at most {expected_assumes}"
+            )
+            _write_result(output_path, 0.0, metadata)
+            return
 
     # ── ANTI-CHEAT 9: Assertion body integrity ───────────────────────
     expected_hash = config.get("assertion_body_hash", "")

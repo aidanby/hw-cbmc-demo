@@ -1,0 +1,23 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixCacheCtrl.sv",
+  "top_module": "cache_ctrl",
+  "bound": 8,
+  "timeout_seconds": 120,
+  "num_expected_properties": 7,
+  "property_names": [
+    "p_reset",
+    "p_hit_valid",
+    "p_read_hit",
+    "p_write_hit",
+    "p_miss_fill",
+    "p_wb_data",
+    "p_miss_rdata"
+  ],
+  "module_signature": "module cache_ctrl( input clk, input reset, input req, // memory request input wr, // 0=read, 1=write input [7:0] addr, // address input [7:0] wdata, // write data (for writes)",
+  "scoring": {
+    "sigmoid_center": 0.92,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "1fa7f15cfa129143eac3cc36b0cbbf361b9018ca0a136a3076eb5e52b76bfd52"
+}

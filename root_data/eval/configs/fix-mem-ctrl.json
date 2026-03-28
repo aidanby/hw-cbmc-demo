@@ -1,0 +1,23 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixMemCtrl.sv",
+  "top_module": "mem_ctrl",
+  "bound": 10,
+  "timeout_seconds": 120,
+  "num_expected_properties": 7,
+  "property_names": [
+    "p_reset",
+    "p_bank_select",
+    "p_bank0_route",
+    "p_bank1_route",
+    "p_resp_order",
+    "p_no_drop",
+    "p_data_match"
+  ],
+  "module_signature": "module mem_ctrl( input clk, input reset, input req, input [7:0] addr, input [7:0] wdata, output reg [7:0] rdata, output reg resp_valid )",
+  "scoring": {
+    "sigmoid_center": 0.75,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "ecb0f41ac12818062e6b07f067860a4f1e3e3559154f520c4310efb2f0849652"
+}

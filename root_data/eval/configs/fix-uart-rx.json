@@ -1,0 +1,22 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixUartRx.sv",
+  "top_module": "uart_rx",
+  "bound": 30,
+  "timeout_seconds": 120,
+  "num_expected_properties": 6,
+  "property_names": [
+    "p_reset",
+    "p_valid_pulse",
+    "p_mid_sample",
+    "p_lsb_first",
+    "p_stop_check",
+    "p_byte_val"
+  ],
+  "module_signature": "module uart_rx( input clk, input reset, input rx, output reg [3:0] rx_data, output reg rx_valid )",
+  "scoring": {
+    "sigmoid_center": 0.9,
+    "sigmoid_scale": 20.0
+  },
+  "assertion_body_hash": "65eb0dead82c51edc8db665584ac95c4f9f5c4b510a4909041a67d1137948e88"
+}

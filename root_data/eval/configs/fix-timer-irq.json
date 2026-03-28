@@ -1,0 +1,23 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixTimerIrq.sv",
+  "top_module": "timer_irq",
+  "bound": 15,
+  "timeout_seconds": 120,
+  "num_expected_properties": 7,
+  "property_names": [
+    "p_reset",
+    "p_tick_gen",
+    "p_timer_inc",
+    "p_reload",
+    "p_irq_a",
+    "p_irq_b",
+    "p_mask_a"
+  ],
+  "module_signature": "module timer_irq( input clk, input reset, input [7:0] cmp_a, input [7:0] cmp_b, input mask_a, // 1 = mask (suppress)",
+  "scoring": {
+    "sigmoid_center": 0.9,
+    "sigmoid_scale": 20.0
+  },
+  "assertion_body_hash": "148ee30388d524e01df1fe9251627c28c9c52673a062bf54a84f6bdc9edf3174"
+}

@@ -1,0 +1,21 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixRestoringDiv.sv",
+  "top_module": "restoring_div",
+  "bound": 12,
+  "timeout_seconds": 120,
+  "num_expected_properties": 5,
+  "property_names": [
+    "p_done_clr",
+    "p_identity",
+    "p_rem_bound",
+    "p_test_17_5",
+    "p_test_100_7"
+  ],
+  "module_signature": "module restoring_div( input clk, input reset, input start, input [7:0] dividend, input [7:0] divisor, output reg [7:0] quotient, output reg [7:0] remainder, output reg done )",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "a90e553183a20c2966d224c11ba946e676526ef7ca87cb7c089efdccbe4f53b1"
+}

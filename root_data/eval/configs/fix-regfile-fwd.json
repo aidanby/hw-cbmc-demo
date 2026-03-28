@@ -1,0 +1,23 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixRegfileFwd.sv",
+  "top_module": "regfile_fwd",
+  "bound": 8,
+  "timeout_seconds": 120,
+  "num_expected_properties": 7,
+  "property_names": [
+    "p_reset",
+    "p_write",
+    "p_read2",
+    "p_fwd2",
+    "p_rmw_add",
+    "p_fwd_val",
+    "p_no_alias"
+  ],
+  "module_signature": "module regfile_fwd( input clk, input reset, input [1:0] wr_addr, input [7:0] wr_data, input wr_en, input rmw, // read-modify-write mode input [1:0] rd_addr1, input [1:0] rd_addr2, output reg [7:0] rd_data1, output reg [7:0] rd_data2, output reg [7:0] rmw_result )",
+  "scoring": {
+    "sigmoid_center": 0.75,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "00b2ce6c216674e26ecbb266c4995d5fefea655991fadb60171edad8d9900900"
+}

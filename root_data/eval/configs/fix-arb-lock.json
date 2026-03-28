@@ -1,0 +1,23 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixArbLock.sv",
+  "top_module": "arb_lock",
+  "bound": 10,
+  "timeout_seconds": 120,
+  "num_expected_properties": 7,
+  "property_names": [
+    "p_reset",
+    "p_mutex",
+    "p_lock_hold",
+    "p_lock_end",
+    "p_burst_load",
+    "p_rr_turn",
+    "p_starve_pri"
+  ],
+  "module_signature": "module arb_lock( input clk, input reset, input req0, input req1, input lock_req, input [2:0] burst_len, // burst length (0=single, 1-7=multi)",
+  "scoring": {
+    "sigmoid_center": 0.95,
+    "sigmoid_scale": 20.0
+  },
+  "assertion_body_hash": "35e05335e54f7b849b62bcf40d66b25a190e6b73f5b3f9ed0bc278b38390ebad"
+}

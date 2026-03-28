@@ -1,0 +1,23 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixFifoAsync.sv",
+  "top_module": "fifo_async",
+  "bound": 10,
+  "timeout_seconds": 120,
+  "num_expected_properties": 7,
+  "property_names": [
+    "p_reset",
+    "p_gray_encode",
+    "p_full_detect",
+    "p_empty_detect",
+    "p_sync_delay",
+    "p_no_overflow",
+    "p_data_integrity"
+  ],
+  "module_signature": "module fifo_async( input clk, input reset, input wr_en, input rd_en, input [7:0] wr_data, output reg [7:0] rd_data, output reg full, output reg empty )",
+  "scoring": {
+    "sigmoid_center": 0.92,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "611fae3b7634c243660ba23cafb6f0103e6f93ae1dc9be3e3d68a233fe6811b9"
+}

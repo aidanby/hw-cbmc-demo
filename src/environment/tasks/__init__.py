@@ -24,6 +24,28 @@ from environment.tasks.fix_hamming import FixHammingTask
 from environment.tasks.fix_barrel_shift import FixBarrelShiftTask
 from environment.tasks.fix_smv_ring3 import FixSmvRing3Task
 from environment.tasks.fix_smv_mod8 import FixSmvMod8Task
+from environment.tasks.fix_pipeline_alu import FixPipelineAluTask
+from environment.tasks.implement_arb3 import ImplementArb3Task
+from environment.tasks.fix_watchdog import FixWatchdogTask
+from environment.tasks.fix_spi_slave import FixSpiSlaveTask
+from environment.tasks.fix_restoring_div import FixRestoringDivTask
+from environment.tasks.implement_axi_handshake import ImplementAxiHandshakeTask
+from environment.tasks.fix_fifo_ptrs import FixFifoPtrsTask
+from environment.tasks.fix_fifo_credit import FixFifoCreditTask
+from environment.tasks.fix_pipeline_mac import FixPipelineMacTask
+from environment.tasks.fix_uart_rx import FixUartRxTask
+from environment.tasks.fix_i2c_ctrl import FixI2cCtrlTask
+from environment.tasks.fix_booth_mul import FixBoothMulTask
+from environment.tasks.fix_scoreboard_bypass import FixScoreboardBypassTask
+from environment.tasks.fix_cache_ctrl import FixCacheCtrlTask
+from environment.tasks.fix_branch_pred import FixBranchPredTask
+from environment.tasks.fix_dma_engine import FixDmaEngineTask
+from environment.tasks.fix_regfile_fwd import FixRegfileFwdTask
+from environment.tasks.fix_hazard_ctrl import FixHazardCtrlTask
+from environment.tasks.fix_arb_lock import FixArbLockTask
+from environment.tasks.fix_fifo_async import FixFifoAsyncTask
+from environment.tasks.fix_timer_irq import FixTimerIrqTask
+from environment.tasks.fix_mem_ctrl import FixMemCtrlTask
 
 __all__ = [
     "FixAdderCarryTask",
@@ -47,4 +69,26 @@ __all__ = [
     "FixBarrelShiftTask",
     "FixSmvRing3Task",
     "FixSmvMod8Task",
+    "FixPipelineAluTask",
+    "ImplementArb3Task",
+    "FixWatchdogTask",
+    "FixSpiSlaveTask",
+    "FixRestoringDivTask",
+    "ImplementAxiHandshakeTask",
+    "FixFifoPtrsTask",
+    "FixFifoCreditTask",
+    "FixPipelineMacTask",
+    "FixUartRxTask",
+    "FixI2cCtrlTask",
+    "FixBoothMulTask",
+    "FixScoreboardBypassTask",
+    "FixCacheCtrlTask",
+    "FixBranchPredTask",
+    "FixDmaEngineTask",
+    "FixRegfileFwdTask",
+    "FixHazardCtrlTask",
+    "FixArbLockTask",
+    "FixFifoAsyncTask",
+    "FixTimerIrqTask",
+    "FixMemCtrlTask",
 ]

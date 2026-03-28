@@ -1,0 +1,1031 @@
+{
+  "tier": "local_trial",
+  "results": [
+    {
+      "status": "PASS",
+      "task": "fix-branch-pred",
+      "score": 0.002807,
+      "scoring_metadata": {
+        "sv_file": "/workdir/data/FixBranchPred.sv",
+        "top_module": "branch_pred",
+        "bound": 10,
+        "num_expected_properties": 7,
+        "property_count_actual": 7,
+        "property_count_expected": 7,
+        "property_names_missing": [],
+        "assertion_body_hash_actual": "7e2b7ca24883e85c92c6f7110beb6b5ae64e8564289f42abe9f879ac929341c3",
+        "ebmc_exit_code": 1,
+        "ebmc_proved": 0,
+        "ebmc_refuted": 0,
+        "ebmc_timed_out": false,
+        "ebmc_elapsed_seconds": 0.004,
+        "ebmc_stdout": "",
+        "proved_fraction": 0.0
+      },
+      "student_strategy": "I will address each file one by one, identifying the bugs based on the comments and assertions, and then use `edit_file` to fix them.\n\n### Fix `FixAdderCarry.sv`\n\n**Analysis**:\nThe comments state the adder is producing incorrect results. The assertions provide the expected behavior for `sum` and `ca",
+      "tool_calls_summary": [],
+      "tool_calls_total": 0,
+      "output_files": [
+        "data/FixLFSR.sv",
+        "data/FixArbiterFair.sv",
+        "data/FixMuxSelect.sv",
+        "data/FixRingBuffer.sv",
+        "data/FixFifoAsync.sv",
+        "data/FixPipelineMac.sv",
+        "data/FixRegfileFwd.sv",
+        "data/fix-smv-counter.smv",
+        "data/FixCounterWrap.sv",
+        "data/FixHamming.sv",
+        "data/FixTrafficLight.sv",
+        "data/FixWatchdog.sv",
+        "data/FixUartRx.sv",
+        "data/FixHazardCtrl.sv",
+        "data/FixPriorityEnc.sv",
+        "data/FixTimerIrq.sv",
+        "data/ImplementAxiHandshake.sv",
+        "data/FixGrayCounter.sv",
+        "data/FixFibonacci.sv",
+        "data/FixDffEnable.sv"
+      ],
+      "errors": [],
+      "infra_limitations": [],
+      "time_seconds": 16.5,
+      "assessment": {
+        "path_consistency": {
+          "status": "PASS",
+          "task_output_paths": [],
+          "scoring_reads_from": [],
+          "mismatches": []
+        },
+        "student_comprehension": {
+          "status": "SKIP",
+          "reason": "No tool calls"
+        },
+        "file_format": {
+          "status": "SKIP",
+          "reason": "No expected extensions detected in instructions"
+        },
+        "scoring_robustness": {
+          "status": "WARN",
+          "cases": {
+            "missing_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "empty_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "malformed_output": {
+              "score": null,
+              "handles_gracefully": false
+            }
+          },
+          "crashes": []
+        }
+      }
+    },
+    {
+      "status": "PASS",
+      "task": "fix-fifo-async",
+      "score": 0.246946,
+      "scoring_metadata": {
+        "sv_file": "/workdir/data/FixFifoAsync.sv",
+        "top_module": "fifo_async",
+        "bound": 10,
+        "num_expected_properties": 7,
+        "property_count_actual": 7,
+        "property_count_expected": 7,
+        "property_names_missing": [],
+        "assertion_body_hash_actual": "611fae3b7634c243660ba23cafb6f0103e6f93ae1dc9be3e3d68a233fe6811b9",
+        "ebmc_exit_code": 10,
+        "ebmc_proved": 5,
+        "ebmc_refuted": 2,
+        "ebmc_timed_out": false,
+        "ebmc_elapsed_seconds": 0.105,
+        "ebmc_stdout": "Converting\nType-checking Verilog::fifo_async\nSynthesis Verilog::fifo_async\nGenerating Decision Problem\nUsing MiniSAT 2.2.1 with simplifier\nProperties\nSolving with propositional reduction\nSAT checker: instance is SATISFIABLE\nSAT: path found\nSAT checker: instance is SATISFIABLE\nSAT: path found\nSAT checker: instance is UNSATISFIABLE\nUNSAT: No path found within bound\n\n** Results:\n[fifo_async.p_reset] always (fifo_async.reset |=> fifo_async.empty && !fifo_async.full && fifo_async.wr_ptr == 4'b0000 && fifo_async.rd_ptr == 4'b0000): PROVED up to bound 10\n[fifo_async.p_gray_encode] always (!fifo_async.reset |=> fifo_async.wr_gray == ($past(fifo_async.wr_ptr) ^ $past(fifo_async.wr_ptr) >> 1)): PROVED up to bound 10\n[fifo_async.p_full_detect] always (!fifo_async.reset && fifo_async.wr_gray == { (~fifo_async.rd_gray_sync[3:2]), fifo_async.rd_gray_sync[1:0] } |=> fifo_async.full): PROVED up to bound 10\n[fifo_async.p_empty_detect] always (!fifo_async.reset && fifo_async.rd_gray == fifo_async.wr_gray_sync |=> fifo_async.empty): PROVED up to bound 10\n[fifo_async.p_sync_delay] always (!fifo_async.reset |=> fifo_async.wr_gray_s1 == $past(fifo_async.wr_gray) && fifo_async.wr_gray_sync == $past(fifo_async.wr_gray_s1)): PROVED up to bound 10\n[fifo_async.p_no_overflow] always (!fifo_async.reset && fifo_async.full |-> !(fifo_async.wr_en && fifo_async.wr_ptr != $past(fifo_async.wr_ptr))): REFUTED\n[fifo_async.p_data_integrity] always (!fifo_async.reset && fifo_async.rd_en && !fifo_async.empty |=> fifo_async.rd_data == $past(fifo_async.mem[$past(fifo_async.rd_ptr[2:0])])): REFUTED\n",
+        "proved_fraction": 0.7143
+      },
+      "student_strategy": "The file `FixFifoAsync.sv` has been corrected. The following changes were made:\n1.  The Gray code encoding for `wr_gray` was changed from `wr_ptr ^ (wr_ptr << 1)` to `wr_ptr ^ (wr_ptr >> 1)`.\n2.  The `rd_gray_sync` signal now uses a 2-stage synchronizer by introducing `rd_gray_s1`.\n3.  The `full` de",
+      "tool_calls_summary": [
+        "edit_file: data/FixFifoCredit.sv",
+        "read_file: data/FixFifoCredit.sv",
+        "bash: ls -l /workdir/data/",
+        "edit_file: FixFifoAsync.sv",
+        "read_file: FixFifoAsync.sv"
+      ],
+      "tool_calls_total": 8,
+      "output_files": [
+        "data/FixLFSR.sv",
+        "data/FixArbiterFair.sv",
+        "data/FixMuxSelect.sv",
+        "data/FixRingBuffer.sv",
+        "data/FixFifoAsync.sv",
+        "data/FixPipelineMac.sv",
+        "data/FixRegfileFwd.sv",
+        "data/fix-smv-counter.smv",
+        "data/FixCounterWrap.sv",
+        "data/FixHamming.sv",
+        "data/FixTrafficLight.sv",
+        "data/FixWatchdog.sv",
+        "data/FixUartRx.sv",
+        "data/FixHazardCtrl.sv",
+        "data/FixPriorityEnc.sv",
+        "data/FixTimerIrq.sv",
+        "data/ImplementAxiHandshake.sv",
+        "data/FixGrayCounter.sv",
+        "data/FixFibonacci.sv",
+        "data/FixDffEnable.sv"
+      ],
+      "errors": [],
+      "infra_limitations": [],
+      "time_seconds": 24.8,
+      "assessment": {
+        "path_consistency": {
+          "status": "PASS",
+          "task_output_paths": [],
+          "scoring_reads_from": [],
+          "mismatches": []
+        },
+        "student_comprehension": {
+          "status": "PASS",
+          "understood_task": false,
+          "first_action": "edit_file: data/FixFifoCredit.sv",
+          "approach": "edit_file: data/FixFifoCredit.sv; read_file: data/FixFifoCredit.sv; ls -l /workdir/data/; read_file: FixFifoAsync.sv; edit_file: FixFifoAsync.sv",
+          "cheat_attempts": {
+            "tried_root_data": false,
+            "tried_scoring": false,
+            "tried_pip_install": false,
+            "tried_network": false
+          },
+          "suspicious_commands": []
+        },
+        "file_format": {
+          "status": "SKIP",
+          "reason": "No expected extensions detected in instructions"
+        },
+        "scoring_robustness": {
+          "status": "WARN",
+          "cases": {
+            "missing_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "empty_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "malformed_output": {
+              "score": null,
+              "handles_gracefully": false
+            }
+          },
+          "crashes": []
+        }
+      }
+    },
+    {
+      "status": "PASS",
+      "task": "fix-arb-lock",
+      "score": 0.184714,
+      "scoring_metadata": {
+        "sv_file": "/workdir/data/FixArbLock.sv",
+        "top_module": "arb_lock",
+        "bound": 10,
+        "num_expected_properties": 7,
+        "property_count_actual": 7,
+        "property_count_expected": 7,
+        "property_names_missing": [],
+        "assertion_body_hash_actual": "35e05335e54f7b849b62bcf40d66b25a190e6b73f5b3f9ed0bc278b38390ebad",
+        "ebmc_exit_code": 10,
+        "ebmc_proved": 6,
+        "ebmc_refuted": 1,
+        "ebmc_timed_out": false,
+        "ebmc_elapsed_seconds": 0.023,
+        "ebmc_stdout": "Converting\nType-checking Verilog::arb_lock\nSynthesis Verilog::arb_lock\nGenerating Decision Problem\nUsing MiniSAT 2.2.1 with simplifier\nProperties\nSolving with propositional reduction\nSAT checker: instance is SATISFIABLE\nSAT: path found\nSAT checker: instance is UNSATISFIABLE\nUNSAT: No path found within bound\n\n** Results:\n[arb_lock.p_reset] always (arb_lock.reset |=> !arb_lock.grant0 && !arb_lock.grant1 && !arb_lock.locked): PROVED up to bound 10\n[arb_lock.p_mutex] always !(arb_lock.grant0 && arb_lock.grant1): PROVED up to bound 10\n[arb_lock.p_lock_hold] always (!arb_lock.reset && arb_lock.locked && arb_lock.burst_cnt > 3'b000 && arb_lock.lock_owner == 1'b0 && arb_lock.req0 |=> arb_lock.grant0 && arb_lock.locked): PROVED up to bound 10\n[arb_lock.p_lock_end] always (!arb_lock.reset && arb_lock.locked && arb_lock.burst_cnt == 3'b000 |=> !arb_lock.locked): PROVED up to bound 10\n[arb_lock.p_burst_load] always (!arb_lock.reset && !arb_lock.locked && arb_lock.grant0 && arb_lock.lock_req |=> arb_lock.locked && arb_lock.burst_cnt == $past(arb_lock.burst_len)): REFUTED\n[arb_lock.p_rr_turn] always (!arb_lock.reset && !arb_lock.locked && arb_lock.req0 && arb_lock.req1 && !arb_lock.pri0 && !arb_lock.pri1 && arb_lock.turn == 1'b0 |=> arb_lock.grant0): PROVED up to bound 10\n[arb_lock.p_starve_pri] always (!arb_lock.reset && !arb_lock.locked && arb_lock.req0 && arb_lock.req1 && arb_lock.pri0 && !arb_lock.pri1 |=> arb_lock.grant0): PROVED up to bound 10\n",
+        "proved_fraction": 0.8571
+      },
+      "student_strategy": "",
+      "tool_calls_summary": [
+        "read_file: data/FixArbiterFair.sv",
+        "read_file: /workdir/data/FixArbiterFair.sv",
+        "edit_file: /workdir/data/FixArbiterFair.sv",
+        "edit_file: /workdir/data/FixCounterWrap.sv",
+        "read_file: /workdir/data/FixDecoder.sv",
+        "edit_file: /workdir/data/FixDecoder.sv"
+      ],
+      "tool_calls_total": 25,
+      "output_files": [
+        "data/FixLFSR.sv",
+        "data/FixArbiterFair.sv",
+        "data/FixMuxSelect.sv",
+        "data/FixRingBuffer.sv",
+        "data/FixFifoAsync.sv",
+        "data/FixPipelineMac.sv",
+        "data/FixRegfileFwd.sv",
+        "data/fix-smv-counter.smv",
+        "data/FixCounterWrap.sv",
+        "data/FixHamming.sv",
+        "data/FixTrafficLight.sv",
+        "data/FixWatchdog.sv",
+        "data/FixUartRx.sv",
+        "data/FixHazardCtrl.sv",
+        "data/FixPriorityEnc.sv",
+        "data/FixTimerIrq.sv",
+        "data/ImplementAxiHandshake.sv",
+        "data/FixGrayCounter.sv",
+        "data/FixFibonacci.sv",
+        "data/FixDffEnable.sv"
+      ],
+      "errors": [],
+      "infra_limitations": [],
+      "time_seconds": 64.2,
+      "assessment": {
+        "path_consistency": {
+          "status": "PASS",
+          "task_output_paths": [],
+          "scoring_reads_from": [],
+          "mismatches": []
+        },
+        "student_comprehension": {
+          "status": "PASS",
+          "understood_task": false,
+          "first_action": "read_file: data/FixArbiterFair.sv",
+          "approach": "read_file: data/FixArbiterFair.sv; read_file: /workdir/data/FixArbiterFair.sv; edit_file: /workdir/data/FixArbiterFair.sv; read_file: /workdir/data/FixAdderCarry.sv; edit_file: /workdir/data/FixAdderCarry.sv",
+          "cheat_attempts": {
+            "tried_root_data": false,
+            "tried_scoring": false,
+            "tried_pip_install": false,
+            "tried_network": false
+          },
+          "suspicious_commands": []
+        },
+        "file_format": {
+          "status": "SKIP",
+          "reason": "No expected extensions detected in instructions"
+        },
+        "scoring_robustness": {
+          "status": "WARN",
+          "cases": {
+            "missing_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "empty_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "malformed_output": {
+              "score": null,
+              "handles_gracefully": false
+            }
+          },
+          "crashes": []
+        }
+      }
+    },
+    {
+      "status": "PASS",
+      "task": "fix-dma-engine",
+      "score": 0.080609,
+      "scoring_metadata": {
+        "sv_file": "/workdir/data/FixDmaEngine.sv",
+        "top_module": "dma_engine",
+        "bound": 12,
+        "num_expected_properties": 7,
+        "property_count_actual": 7,
+        "property_count_expected": 7,
+        "property_names_missing": [],
+        "assertion_body_hash_actual": "79ff3d0d7e07b07a488762271b09883caef1a22166b020d4d4e5d3550afd2f82",
+        "ebmc_exit_code": 10,
+        "ebmc_proved": 3,
+        "ebmc_refuted": 4,
+        "ebmc_timed_out": false,
+        "ebmc_elapsed_seconds": 0.05,
+        "ebmc_stdout": "Converting\nType-checking Verilog::dma_engine\nSynthesis Verilog::dma_engine\nGenerating Decision Problem\nUsing MiniSAT 2.2.1 with simplifier\nProperties\nSolving with propositional reduction\nSAT checker: instance is SATISFIABLE\nSAT: path found\nSAT checker: instance is SATISFIABLE\nSAT: path found\nSAT checker: instance is SATISFIABLE\nSAT: path found\nSAT checker: instance is UNSATISFIABLE\nUNSAT: No path found within bound\n\n** Results:\n[dma_engine.p_reset] always (dma_engine.reset |=> !dma_engine.bus_req && !dma_engine.ch0_done && !dma_engine.ch1_done): PROVED up to bound 12\n[dma_engine.p_addr0_inc] always (!dma_engine.reset && dma_engine.active0 && dma_engine.bus_req && dma_engine.bus_addr == dma_engine.addr0 |=> dma_engine.addr0 == $past(dma_engine.addr0) + 1): REFUTED\n[dma_engine.p_ch0_done] always (!dma_engine.reset && dma_engine.active0 && dma_engine.rem0 == 4'b0001 && dma_engine.bus_addr == dma_engine.addr0 && dma_engine.bus_req |=> dma_engine.ch0_done): REFUTED\n[dma_engine.p_ch1_done] always (!dma_engine.reset && dma_engine.active1 && dma_engine.rem1 == 4'b0001 && dma_engine.bus_addr == dma_engine.addr1 && dma_engine.bus_req |=> dma_engine.ch1_done): REFUTED\n[dma_engine.p_turn_flip] always (!dma_engine.reset && dma_engine.active0 && dma_engine.active1 && dma_engine.turn == 1'b0 && dma_engine.bus_req |=> dma_engine.turn == 1'b1): REFUTED\n[dma_engine.p_no_starve] always (!dma_engine.reset && dma_engine.active0 && dma_engine.active1 && dma_engine.turn == 1'b1 |=> dma_engine.bus_addr == $past(dma_engine.addr1)): PROVED up to bound 12\n[dma_engine.p_mutex] always !(dma_engine.ch0_done && dma_engine.ch1_done): PROVED up to bound 12\n",
+        "proved_fraction": 0.4286
+      },
+      "student_strategy": "",
+      "tool_calls_summary": [
+        "edit_file: data/FixAdderCarry.sv",
+        "edit_file: /workdir/data/FixAdderCarry.sv",
+        "edit_file: /workdir/data/FixFibonacci.sv",
+        "read_file: /workdir/data/FixFibonacci.sv"
+      ],
+      "tool_calls_total": 25,
+      "output_files": [
+        "data/FixLFSR.sv",
+        "data/FixArbiterFair.sv",
+        "data/FixMuxSelect.sv",
+        "data/FixRingBuffer.sv",
+        "data/FixFifoAsync.sv",
+        "data/FixPipelineMac.sv",
+        "data/FixRegfileFwd.sv",
+        "data/fix-smv-counter.smv",
+        "data/FixCounterWrap.sv",
+        "data/FixHamming.sv",
+        "data/FixTrafficLight.sv",
+        "data/FixWatchdog.sv",
+        "data/FixUartRx.sv",
+        "data/FixHazardCtrl.sv",
+        "data/FixPriorityEnc.sv",
+        "data/FixTimerIrq.sv",
+        "data/ImplementAxiHandshake.sv",
+        "data/FixGrayCounter.sv",
+        "data/FixFibonacci.sv",
+        "data/FixDffEnable.sv"
+      ],
+      "errors": [],
+      "infra_limitations": [],
+      "time_seconds": 67.0,
+      "assessment": {
+        "path_consistency": {
+          "status": "PASS",
+          "task_output_paths": [],
+          "scoring_reads_from": [],
+          "mismatches": []
+        },
+        "student_comprehension": {
+          "status": "PASS",
+          "understood_task": false,
+          "first_action": "edit_file: data/FixAdderCarry.sv",
+          "approach": "edit_file: data/FixAdderCarry.sv; edit_file: /workdir/data/FixAdderCarry.sv; edit_file: /workdir/data/FixAdderCarry.sv; edit_file: /workdir/data/FixAdderCarry.sv; edit_file: /workdir/data/FixArbiterFair.sv",
+          "cheat_attempts": {
+            "tried_root_data": false,
+            "tried_scoring": false,
+            "tried_pip_install": false,
+            "tried_network": false
+          },
+          "suspicious_commands": []
+        },
+        "file_format": {
+          "status": "SKIP",
+          "reason": "No expected extensions detected in instructions"
+        },
+        "scoring_robustness": {
+          "status": "WARN",
+          "cases": {
+            "missing_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "empty_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "malformed_output": {
+              "score": null,
+              "handles_gracefully": false
+            }
+          },
+          "crashes": []
+        }
+      }
+    },
+    {
+      "status": "PASS",
+      "task": "fix-hazard-ctrl",
+      "score": 0.080609,
+      "scoring_metadata": {
+        "sv_file": "/workdir/data/FixHazardCtrl.sv",
+        "top_module": "hazard_ctrl",
+        "bound": 10,
+        "num_expected_properties": 7,
+        "property_count_actual": 7,
+        "property_count_expected": 7,
+        "property_names_missing": [],
+        "assertion_body_hash_actual": "a8a75c37bb2e50e3705d6239a5b7c1498834e9251cc4235907fe5aca7ac2a110",
+        "ebmc_exit_code": 10,
+        "ebmc_proved": 3,
+        "ebmc_refuted": 4,
+        "ebmc_timed_out": false,
+        "ebmc_elapsed_seconds": 0.023,
+        "ebmc_stdout": "Converting\nType-checking Verilog::hazard_ctrl\nSynthesis Verilog::hazard_ctrl\nGenerating Decision Problem\nUsing MiniSAT 2.2.1 with simplifier\nProperties\nSolving with propositional reduction\nSAT checker: instance is SATISFIABLE\nSAT: path found\nSAT checker: instance is UNSATISFIABLE\nUNSAT: No path found within bound\n\n** Results:\n[hazard_ctrl.p_reset] always (hazard_ctrl.reset |=> !hazard_ctrl.ex_valid && !hazard_ctrl.wb_valid && !hazard_ctrl.stall): PROVED up to bound 10\n[hazard_ctrl.p_raw_ex] always (!hazard_ctrl.reset && hazard_ctrl.ex_valid && hazard_ctrl.ex_rd == hazard_ctrl.id_rs && hazard_ctrl.id_valid |-> hazard_ctrl.raw_ex): REFUTED\n[hazard_ctrl.p_stall_load] always (!hazard_ctrl.reset && hazard_ctrl.load_use |=> hazard_ctrl.stall): REFUTED\n[hazard_ctrl.p_flush] always (!hazard_ctrl.reset && hazard_ctrl.load_use |=> !hazard_ctrl.ex_valid): REFUTED\n[hazard_ctrl.p_fwd_ex_val] always (!hazard_ctrl.reset && hazard_ctrl.do_fwd_ex |=> hazard_ctrl.fwd_data == $past(hazard_ctrl.ex_result)): REFUTED\n[hazard_ctrl.p_fwd_wb_val] always (!hazard_ctrl.reset && hazard_ctrl.do_fwd_wb && !hazard_ctrl.do_fwd_ex |=> hazard_ctrl.fwd_data == $past(hazard_ctrl.wb_result)): PROVED up to bound 10\n[hazard_ctrl.p_pipe_advance] always (!hazard_ctrl.reset && !hazard_ctrl.load_use && hazard_ctrl.id_valid |=> hazard_ctrl.ex_valid && hazard_ctrl.ex_rd == $past(hazard_ctrl.id_rd)): PROVED up to bound 10\n",
+        "proved_fraction": 0.4286
+      },
+      "student_strategy": "",
+      "tool_calls_summary": [
+        "read_file: data/FixAdderCarry.sv",
+        "read_file: FixAdderCarry.sv",
+        "edit_file: FixCounterReset.sv",
+        "read_file: FixCounterWrap.sv"
+      ],
+      "tool_calls_total": 25,
+      "output_files": [
+        "data/FixLFSR.sv",
+        "data/FixArbiterFair.sv",
+        "data/FixMuxSelect.sv",
+        "data/FixRingBuffer.sv",
+        "data/FixFifoAsync.sv",
+        "data/FixPipelineMac.sv",
+        "data/FixRegfileFwd.sv",
+        "data/fix-smv-counter.smv",
+        "data/FixCounterWrap.sv",
+        "data/FixHamming.sv",
+        "data/FixTrafficLight.sv",
+        "data/FixWatchdog.sv",
+        "data/FixUartRx.sv",
+        "data/FixHazardCtrl.sv",
+        "data/FixPriorityEnc.sv",
+        "data/FixTimerIrq.sv",
+        "data/ImplementAxiHandshake.sv",
+        "data/FixGrayCounter.sv",
+        "data/FixFibonacci.sv",
+        "data/FixDffEnable.sv"
+      ],
+      "errors": [],
+      "infra_limitations": [],
+      "time_seconds": 51.3,
+      "assessment": {
+        "path_consistency": {
+          "status": "PASS",
+          "task_output_paths": [],
+          "scoring_reads_from": [],
+          "mismatches": []
+        },
+        "student_comprehension": {
+          "status": "PASS",
+          "understood_task": false,
+          "first_action": "read_file: data/FixAdderCarry.sv",
+          "approach": "read_file: data/FixAdderCarry.sv; read_file: data/FixAdderCarry.sv; read_file: FixAdderCarry.sv; edit_file: FixAdderCarry.sv; edit_file: FixAdderCarry.sv",
+          "cheat_attempts": {
+            "tried_root_data": false,
+            "tried_scoring": false,
+            "tried_pip_install": false,
+            "tried_network": false
+          },
+          "suspicious_commands": []
+        },
+        "file_format": {
+          "status": "SKIP",
+          "reason": "No expected extensions detected in instructions"
+        },
+        "scoring_robustness": {
+          "status": "WARN",
+          "cases": {
+            "missing_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "empty_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "malformed_output": {
+              "score": null,
+              "handles_gracefully": false
+            }
+          },
+          "crashes": []
+        }
+      }
+    },
+    {
+      "status": "PASS",
+      "task": "fix-mem-ctrl",
+      "score": 0.080609,
+      "scoring_metadata": {
+        "sv_file": "/workdir/data/FixMemCtrl.sv",
+        "top_module": "mem_ctrl",
+        "bound": 10,
+        "num_expected_properties": 7,
+        "property_count_actual": 7,
+        "property_count_expected": 7,
+        "property_names_missing": [],
+        "assertion_body_hash_actual": "ecb0f41ac12818062e6b07f067860a4f1e3e3559154f520c4310efb2f0849652",
+        "ebmc_exit_code": 10,
+        "ebmc_proved": 3,
+        "ebmc_refuted": 4,
+        "ebmc_timed_out": false,
+        "ebmc_elapsed_seconds": 0.018,
+        "ebmc_stdout": "Converting\nType-checking Verilog::mem_ctrl\nSynthesis Verilog::mem_ctrl\nGenerating Decision Problem\nUsing MiniSAT 2.2.1 with simplifier\nProperties\nSolving with propositional reduction\nSAT checker: instance is SATISFIABLE\nSAT: path found\nSAT checker: instance is UNSATISFIABLE\nUNSAT: No path found within bound\n\n** Results:\n[mem_ctrl.p_reset] always (mem_ctrl.reset |=> !mem_ctrl.resp_valid && !mem_ctrl.pending0 && !mem_ctrl.pending1): PROVED up to bound 10\n[mem_ctrl.p_bank_select] always (!mem_ctrl.reset && mem_ctrl.req |=> mem_ctrl.bank == $past(mem_ctrl.addr[0])): PROVED up to bound 10\n[mem_ctrl.p_bank0_route] always (!mem_ctrl.reset && mem_ctrl.req && mem_ctrl.addr[0] == 1'b0 |=> mem_ctrl.pending0): REFUTED\n[mem_ctrl.p_bank1_route] always (!mem_ctrl.reset && mem_ctrl.req && mem_ctrl.addr[0] == 1'b1 |=> mem_ctrl.pending1): REFUTED\n[mem_ctrl.p_resp_order] always (!mem_ctrl.reset && mem_ctrl.req && mem_ctrl.addr[0] == 1'b0 |=> (##1 mem_ctrl.resp_bank == 1'b0)): REFUTED\n[mem_ctrl.p_no_drop] always (!mem_ctrl.reset && (mem_ctrl.pending0 || mem_ctrl.pending1) |=> mem_ctrl.resp_valid): PROVED up to bound 10\n[mem_ctrl.p_data_match] always (!mem_ctrl.reset && mem_ctrl.resp_valid && mem_ctrl.resp_bank == 1'b1 |-> mem_ctrl.rdata == mem_ctrl.bank1_data): REFUTED\n",
+        "proved_fraction": 0.4286
+      },
+      "student_strategy": "",
+      "tool_calls_summary": [
+        "read_file: data/FixAdderCarry.sv",
+        "read_file: FixAdderCarry.sv",
+        "read_file: FixFibonacci.sv",
+        "edit_file: FixFibonacci.sv"
+      ],
+      "tool_calls_total": 39,
+      "output_files": [
+        "data/FixLFSR.sv",
+        "data/FixArbiterFair.sv",
+        "data/FixMuxSelect.sv",
+        "data/FixRingBuffer.sv",
+        "data/FixFifoAsync.sv",
+        "data/FixPipelineMac.sv",
+        "data/FixRegfileFwd.sv",
+        "data/fix-smv-counter.smv",
+        "data/FixCounterWrap.sv",
+        "data/FixHamming.sv",
+        "data/FixTrafficLight.sv",
+        "data/FixWatchdog.sv",
+        "data/FixUartRx.sv",
+        "data/FixHazardCtrl.sv",
+        "data/FixPriorityEnc.sv",
+        "data/FixTimerIrq.sv",
+        "data/ImplementAxiHandshake.sv",
+        "data/FixGrayCounter.sv",
+        "data/FixFibonacci.sv",
+        "data/FixDffEnable.sv"
+      ],
+      "errors": [],
+      "infra_limitations": [],
+      "time_seconds": 47.0,
+      "assessment": {
+        "path_consistency": {
+          "status": "PASS",
+          "task_output_paths": [],
+          "scoring_reads_from": [],
+          "mismatches": []
+        },
+        "student_comprehension": {
+          "status": "PASS",
+          "understood_task": false,
+          "first_action": "read_file: data/FixAdderCarry.sv",
+          "approach": "read_file: data/FixAdderCarry.sv; read_file: data/FixAdderCarry.sv; read_file: FixAdderCarry.sv; edit_file: FixAdderCarry.sv; edit_file: FixAdderCarry.sv",
+          "cheat_attempts": {
+            "tried_root_data": false,
+            "tried_scoring": false,
+            "tried_pip_install": false,
+            "tried_network": false
+          },
+          "suspicious_commands": []
+        },
+        "file_format": {
+          "status": "SKIP",
+          "reason": "No expected extensions detected in instructions"
+        },
+        "scoring_robustness": {
+          "status": "WARN",
+          "cases": {
+            "missing_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "empty_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "malformed_output": {
+              "score": null,
+              "handles_gracefully": false
+            }
+          },
+          "crashes": []
+        }
+      }
+    },
+    {
+      "status": "PASS",
+      "task": "fix-scoreboard-bypass",
+      "score": 1.0,
+      "scoring_metadata": {
+        "sv_file": "/workdir/data/FixScoreboardBypass.sv",
+        "top_module": "bypass_pipe",
+        "bound": 10,
+        "num_expected_properties": 8,
+        "property_count_actual": 8,
+        "property_count_expected": 8,
+        "property_names_missing": [],
+        "assertion_body_hash_actual": "6f60c529fbad60d0ce96a0278c9bf8bed2a16e435b7f9ef1413f00040bd51973",
+        "ebmc_exit_code": 0,
+        "ebmc_proved": 8,
+        "ebmc_refuted": 0,
+        "ebmc_timed_out": false,
+        "ebmc_elapsed_seconds": 0.094,
+        "ebmc_stdout": "Converting\nType-checking Verilog::bypass_pipe\nSynthesis Verilog::bypass_pipe\nGenerating Decision Problem\nUsing MiniSAT 2.2.1 with simplifier\nProperties\nSolving with propositional reduction\nSAT checker: instance is UNSATISFIABLE\nUNSAT: No path found within bound\n\n** Results:\n[bypass_pipe.p_reset] always (bypass_pipe.reset |=> bypass_pipe.wb_valid == 1'b0): PROVED up to bound 10\n[bypass_pipe.p_load] always ((!bypass_pipe.reset && bypass_pipe.op == 1'b0 && bypass_pipe.imm_in == 170 && bypass_pipe.rd == 2'b00 ##1 !bypass_pipe.reset) |=> bypass_pipe.reset || bypass_pipe.wb_valid && bypass_pipe.wb_val == 170): PROVED up to bound 10\n[bypass_pipe.p_bypass_cond] always (!bypass_pipe.reset && bypass_pipe.wb_valid && bypass_pipe.rd_wb == bypass_pipe.rs_s1 |-> bypass_pipe.bypass == 1'b1): PROVED up to bound 10\n[bypass_pipe.p_bypass_val] always (!bypass_pipe.reset && bypass_pipe.bypass |=> bypass_pipe.src_val == $past(bypass_pipe.wb_val)): PROVED up to bound 10\n[bypass_pipe.p_no_bypass_inc] always (!bypass_pipe.reset && !bypass_pipe.bypass && bypass_pipe.op_s1 == 1'b1 |=> bypass_pipe.wb_val == $past(bypass_pipe.src_val) + 1): PROVED up to bound 10\n[bypass_pipe.p_regfile_wr] always (!bypass_pipe.reset && bypass_pipe.wb_valid |=> bypass_pipe.regfile[$past(bypass_pipe.rd_wb)] == $past(bypass_pipe.wb_val)): PROVED up to bound 10\n[bypass_pipe.p_src_reg0] always (!bypass_pipe.reset && !bypass_pipe.bypass && bypass_pipe.rs_s1 == 2'b00 |=> bypass_pipe.src_val == $past(bypass_pipe.regfile[0])): PROVED up to bound 10\n[bypass_pipe.p_wb_dest] always (!bypass_pipe.reset && bypass_pipe.wb_valid |-> bypass_pipe.rd_wb == $past(bypass_pipe.rd_s1)): PROVED up to bound 10\n",
+        "proved_fraction": 1.0
+      },
+      "student_strategy": "The file `FixScoreboardBypass.sv` has been updated with the following fixes:\n\n1.  **Bypass condition:** Changed `wire bypass = wb_valid && (rd_wb == rd_s1);` to `wire bypass = wb_valid && (rd_wb == rs_s1);` to correctly check for RAW hazards.\n2.  **Bypass mux:** Changed `src_val <= bypass ? 8'd0 : r",
+      "tool_calls_summary": [
+        "read_file: data/FixScoreboardBypass.sv",
+        "read_file: FixScoreboardBypass.sv",
+        "edit_file: FixScoreboardBypass.sv"
+      ],
+      "tool_calls_total": 7,
+      "output_files": [
+        "data/FixLFSR.sv",
+        "data/FixArbiterFair.sv",
+        "data/FixMuxSelect.sv",
+        "data/FixRingBuffer.sv",
+        "data/FixFifoAsync.sv",
+        "data/FixPipelineMac.sv",
+        "data/FixRegfileFwd.sv",
+        "data/fix-smv-counter.smv",
+        "data/FixCounterWrap.sv",
+        "data/FixHamming.sv",
+        "data/FixTrafficLight.sv",
+        "data/FixWatchdog.sv",
+        "data/FixUartRx.sv",
+        "data/FixHazardCtrl.sv",
+        "data/FixPriorityEnc.sv",
+        "data/FixTimerIrq.sv",
+        "data/ImplementAxiHandshake.sv",
+        "data/FixGrayCounter.sv",
+        "data/FixFibonacci.sv",
+        "data/FixDffEnable.sv"
+      ],
+      "errors": [],
+      "infra_limitations": [],
+      "time_seconds": 14.6,
+      "assessment": {
+        "path_consistency": {
+          "status": "PASS",
+          "task_output_paths": [],
+          "scoring_reads_from": [],
+          "mismatches": []
+        },
+        "student_comprehension": {
+          "status": "PASS",
+          "understood_task": false,
+          "first_action": "read_file: data/FixScoreboardBypass.sv",
+          "approach": "read_file: data/FixScoreboardBypass.sv; read_file: FixScoreboardBypass.sv; edit_file: FixScoreboardBypass.sv; edit_file: FixScoreboardBypass.sv; edit_file: FixScoreboardBypass.sv",
+          "cheat_attempts": {
+            "tried_root_data": false,
+            "tried_scoring": false,
+            "tried_pip_install": false,
+            "tried_network": false
+          },
+          "suspicious_commands": []
+        },
+        "file_format": {
+          "status": "SKIP",
+          "reason": "No expected extensions detected in instructions"
+        },
+        "scoring_robustness": {
+          "status": "WARN",
+          "cases": {
+            "missing_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "empty_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "malformed_output": {
+              "score": null,
+              "handles_gracefully": false
+            }
+          },
+          "crashes": []
+        }
+      }
+    },
+    {
+      "status": "PASS",
+      "task": "fix-timer-irq",
+      "score": 1.0,
+      "scoring_metadata": {
+        "sv_file": "/workdir/data/FixTimerIrq.sv",
+        "top_module": "timer_irq",
+        "bound": 15,
+        "num_expected_properties": 7,
+        "property_count_actual": 7,
+        "property_count_expected": 7,
+        "property_names_missing": [],
+        "assertion_body_hash_actual": "148ee30388d524e01df1fe9251627c28c9c52673a062bf54a84f6bdc9edf3174",
+        "ebmc_exit_code": 0,
+        "ebmc_proved": 7,
+        "ebmc_refuted": 0,
+        "ebmc_timed_out": false,
+        "ebmc_elapsed_seconds": 0.033,
+        "ebmc_stdout": "Converting\nType-checking Verilog::timer_irq\nSynthesis Verilog::timer_irq\nGenerating Decision Problem\nUsing MiniSAT 2.2.1 with simplifier\nProperties\nSolving with propositional reduction\nSAT checker: instance is UNSATISFIABLE\nUNSAT: No path found within bound\n\n** Results:\n[timer_irq.p_reset] always (timer_irq.reset |=> !timer_irq.irq_a && !timer_irq.irq_b && timer_irq.timer == 0): PROVED up to bound 15\n[timer_irq.p_tick_gen] always (!timer_irq.reset && timer_irq.prescaler == 4'b1111 |=> timer_irq.tick): PROVED up to bound 15\n[timer_irq.p_timer_inc] always (!timer_irq.reset && timer_irq.tick && !timer_irq.do_reload |=> timer_irq.timer == $past(timer_irq.timer) + 1): PROVED up to bound 15\n[timer_irq.p_reload] always (!timer_irq.reset && timer_irq.tick && timer_irq.do_reload |=> timer_irq.timer == 0): PROVED up to bound 15\n[timer_irq.p_irq_a] always (!timer_irq.reset && timer_irq.timer_next == timer_irq.cmp_a && !timer_irq.mask_a |=> timer_irq.irq_a): PROVED up to bound 15\n[timer_irq.p_irq_b] always (!timer_irq.reset && timer_irq.timer_next == timer_irq.cmp_b && !timer_irq.mask_b |=> timer_irq.irq_b): PROVED up to bound 15\n[timer_irq.p_mask_a] always (!timer_irq.reset && timer_irq.mask_a |=> !timer_irq.irq_a): PROVED up to bound 15\n",
+        "proved_fraction": 1.0
+      },
+      "student_strategy": "The `FixTimerIrq.sv` file has been modified to address the identified bugs.\n\nHere's a summary of the changes:\n\n1.  **irq_a logic:** The condition for `irq_a` to fire was incorrect. It was checking `mask_a` being asserted (1), but `mask_a` means to suppress the interrupt. The logic was changed from `",
+      "tool_calls_summary": [
+        "read_file: data/FixTimerIrq.sv",
+        "read_file: FixTimerIrq.sv",
+        "edit_file: FixTimerIrq.sv",
+        "bash: ebmc FixTimerIrq.sv --bound 10"
+      ],
+      "tool_calls_total": 6,
+      "output_files": [
+        "data/FixLFSR.sv",
+        "data/FixArbiterFair.sv",
+        "data/FixMuxSelect.sv",
+        "data/FixRingBuffer.sv",
+        "data/FixFifoAsync.sv",
+        "data/FixPipelineMac.sv",
+        "data/FixRegfileFwd.sv",
+        "data/fix-smv-counter.smv",
+        "data/FixCounterWrap.sv",
+        "data/FixHamming.sv",
+        "data/FixTrafficLight.sv",
+        "data/FixWatchdog.sv",
+        "data/FixUartRx.sv",
+        "data/FixHazardCtrl.sv",
+        "data/FixPriorityEnc.sv",
+        "data/FixTimerIrq.sv",
+        "data/ImplementAxiHandshake.sv",
+        "data/FixGrayCounter.sv",
+        "data/FixFibonacci.sv",
+        "data/FixDffEnable.sv"
+      ],
+      "errors": [],
+      "infra_limitations": [],
+      "time_seconds": 13.1,
+      "assessment": {
+        "path_consistency": {
+          "status": "PASS",
+          "task_output_paths": [],
+          "scoring_reads_from": [],
+          "mismatches": []
+        },
+        "student_comprehension": {
+          "status": "PASS",
+          "understood_task": false,
+          "first_action": "read_file: data/FixTimerIrq.sv",
+          "approach": "read_file: data/FixTimerIrq.sv; read_file: data/FixTimerIrq.sv; read_file: FixTimerIrq.sv; edit_file: FixTimerIrq.sv; edit_file: FixTimerIrq.sv",
+          "cheat_attempts": {
+            "tried_root_data": false,
+            "tried_scoring": false,
+            "tried_pip_install": false,
+            "tried_network": false
+          },
+          "suspicious_commands": []
+        },
+        "file_format": {
+          "status": "SKIP",
+          "reason": "No expected extensions detected in instructions"
+        },
+        "scoring_robustness": {
+          "status": "WARN",
+          "cases": {
+            "missing_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "empty_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "malformed_output": {
+              "score": null,
+              "handles_gracefully": false
+            }
+          },
+          "crashes": []
+        }
+      }
+    },
+    {
+      "status": "PASS",
+      "task": "fix-cache-ctrl",
+      "score": 0.246946,
+      "scoring_metadata": {
+        "sv_file": "/workdir/data/FixCacheCtrl.sv",
+        "top_module": "cache_ctrl",
+        "bound": 8,
+        "num_expected_properties": 7,
+        "property_count_actual": 7,
+        "property_count_expected": 7,
+        "property_names_missing": [],
+        "assertion_body_hash_actual": "1fa7f15cfa129143eac3cc36b0cbbf361b9018ca0a136a3076eb5e52b76bfd52",
+        "ebmc_exit_code": 10,
+        "ebmc_proved": 5,
+        "ebmc_refuted": 2,
+        "ebmc_timed_out": false,
+        "ebmc_elapsed_seconds": 0.122,
+        "ebmc_stdout": "Converting\nType-checking Verilog::cache_ctrl\nSynthesis Verilog::cache_ctrl\nGenerating Decision Problem\nUsing MiniSAT 2.2.1 with simplifier\nProperties\nSolving with propositional reduction\nSAT checker: instance is SATISFIABLE\nSAT: path found\nSAT checker: instance is SATISFIABLE\nSAT: path found\nSAT checker: instance is UNSATISFIABLE\nUNSAT: No path found within bound\n\n** Results:\n[cache_ctrl.p_reset] always (cache_ctrl.reset |=> !cache_ctrl.hit && !cache_ctrl.mem_wr): PROVED up to bound 8\n[cache_ctrl.p_hit_valid] always (cache_ctrl.hit |-> cache_ctrl.valid[$past(cache_ctrl.req_index)] && cache_ctrl.tag[$past(cache_ctrl.req_index)] == $past(cache_ctrl.req_tag)): PROVED up to bound 8\n[cache_ctrl.p_read_hit] always (!cache_ctrl.reset && cache_ctrl.req && !cache_ctrl.wr && cache_ctrl.cache_hit |=> cache_ctrl.hit && cache_ctrl.rdata == cache_ctrl.data[$past(cache_ctrl.req_index)]): PROVED up to bound 8\n[cache_ctrl.p_write_hit] always (!cache_ctrl.reset && cache_ctrl.req && cache_ctrl.wr && cache_ctrl.cache_hit |=> cache_ctrl.dirty[$past(cache_ctrl.req_index)] == 1'b1): PROVED up to bound 8\n[cache_ctrl.p_miss_fill] always (!cache_ctrl.reset && cache_ctrl.req && !cache_ctrl.wr && !cache_ctrl.cache_hit |=> cache_ctrl.valid[$past(cache_ctrl.req_index)] && cache_ctrl.tag[$past(cache_ctrl.req_index)] == $past(cache_ctrl.req_tag)): PROVED up to bound 8\n[cache_ctrl.p_wb_data] always (cache_ctrl.mem_wr |-> cache_ctrl.mem_wdata == cache_ctrl.data[$past(cache_ctrl.req_index)]): REFUTED\n[cache_ctrl.p_miss_rdata] always (!cache_ctrl.reset && cache_ctrl.req && !cache_ctrl.wr && !cache_ctrl.cache_hit |=> cache_ctrl.rdata == $past(cache_ctrl.mem_rdata)): REFUTED\n",
+        "proved_fraction": 0.7143
+      },
+      "student_strategy": "",
+      "tool_calls_summary": [
+        "edit_file: /workdir/data/FixAdderCarry.sv",
+        "edit_file: /workdir/data/FixScoreboardBypass.sv"
+      ],
+      "tool_calls_total": 55,
+      "output_files": [
+        "data/FixLFSR.sv",
+        "data/FixArbiterFair.sv",
+        "data/FixMuxSelect.sv",
+        "data/FixRingBuffer.sv",
+        "data/FixFifoAsync.sv",
+        "data/FixPipelineMac.sv",
+        "data/FixRegfileFwd.sv",
+        "data/fix-smv-counter.smv",
+        "data/FixCounterWrap.sv",
+        "data/FixHamming.sv",
+        "data/FixTrafficLight.sv",
+        "data/FixWatchdog.sv",
+        "data/FixUartRx.sv",
+        "data/FixHazardCtrl.sv",
+        "data/FixPriorityEnc.sv",
+        "data/FixTimerIrq.sv",
+        "data/ImplementAxiHandshake.sv",
+        "data/FixGrayCounter.sv",
+        "data/FixFibonacci.sv",
+        "data/FixDffEnable.sv"
+      ],
+      "errors": [],
+      "infra_limitations": [],
+      "time_seconds": 87.8,
+      "assessment": {
+        "path_consistency": {
+          "status": "PASS",
+          "task_output_paths": [],
+          "scoring_reads_from": [],
+          "mismatches": []
+        },
+        "student_comprehension": {
+          "status": "PASS",
+          "understood_task": false,
+          "first_action": "edit_file: /workdir/data/FixAdderCarry.sv",
+          "approach": "edit_file: /workdir/data/FixAdderCarry.sv; edit_file: /workdir/data/FixAdderCarry.sv; edit_file: /workdir/data/FixAdderCarry.sv; edit_file: /workdir/data/FixArbiterFair.sv; edit_file: /workdir/data/FixBarrelShift.sv",
+          "cheat_attempts": {
+            "tried_root_data": false,
+            "tried_scoring": false,
+            "tried_pip_install": false,
+            "tried_network": false
+          },
+          "suspicious_commands": []
+        },
+        "file_format": {
+          "status": "SKIP",
+          "reason": "No expected extensions detected in instructions"
+        },
+        "scoring_robustness": {
+          "status": "WARN",
+          "cases": {
+            "missing_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "empty_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "malformed_output": {
+              "score": null,
+              "handles_gracefully": false
+            }
+          },
+          "crashes": []
+        }
+      }
+    },
+    {
+      "status": "PASS",
+      "task": "fix-regfile-fwd",
+      "score": 0.219485,
+      "scoring_metadata": {
+        "sv_file": "/workdir/data/FixRegfileFwd.sv",
+        "top_module": "regfile_fwd",
+        "bound": 8,
+        "num_expected_properties": 7,
+        "property_count_actual": 7,
+        "property_count_expected": 7,
+        "property_names_missing": [],
+        "assertion_body_hash_actual": "00b2ce6c216674e26ecbb266c4995d5fefea655991fadb60171edad8d9900900",
+        "ebmc_exit_code": 10,
+        "ebmc_proved": 4,
+        "ebmc_refuted": 3,
+        "ebmc_timed_out": false,
+        "ebmc_elapsed_seconds": 0.09,
+        "ebmc_stdout": "Converting\nType-checking Verilog::regfile_fwd\nSynthesis Verilog::regfile_fwd\nGenerating Decision Problem\nUsing MiniSAT 2.2.1 with simplifier\nProperties\nSolving with propositional reduction\nSAT checker: instance is SATISFIABLE\nSAT: path found\nSAT checker: instance is UNSATISFIABLE\nUNSAT: No path found within bound\n\n** Results:\n[regfile_fwd.p_reset] always (regfile_fwd.reset |=> regfile_fwd.rd_data1 == 0 && regfile_fwd.rd_data2 == 0): PROVED up to bound 8\n[regfile_fwd.p_write] always (!regfile_fwd.reset && regfile_fwd.wr_en && !regfile_fwd.rmw && regfile_fwd.wr_addr == 2'b01 && regfile_fwd.wr_data == 171 |=> regfile_fwd.regfile[1] == 171): PROVED up to bound 8\n[regfile_fwd.p_read2] always (!regfile_fwd.reset && !regfile_fwd.fwd2 && regfile_fwd.rd_addr2 == 2'b11 |=> regfile_fwd.rd_data2 == $past(regfile_fwd.regfile[3])): PROVED up to bound 8\n[regfile_fwd.p_fwd2] always (!regfile_fwd.reset && regfile_fwd.last_wr_en && regfile_fwd.last_wr_addr == regfile_fwd.rd_addr2 |-> regfile_fwd.fwd2): REFUTED\n[regfile_fwd.p_rmw_add] always (!regfile_fwd.reset && regfile_fwd.wr_en && regfile_fwd.rmw |=> regfile_fwd.rmw_result == $past(regfile_fwd.regfile[$past(regfile_fwd.wr_addr)]) + $past(regfile_fwd.wr_data)): REFUTED\n[regfile_fwd.p_fwd_val] always (!regfile_fwd.reset && regfile_fwd.fwd1 |=> regfile_fwd.rd_data1 == $past(regfile_fwd.last_wr_val)): PROVED up to bound 8\n[regfile_fwd.p_no_alias] always (!regfile_fwd.reset && !regfile_fwd.last_wr_en && regfile_fwd.rd_addr1 != regfile_fwd.rd_addr2 |=> regfile_fwd.rd_data1 != regfile_fwd.rd_data2 || regfile_fwd.regfile[$past(regfile_fwd.rd_addr1)] == regfile_fwd.regfile[$past(regfile_fwd.rd_addr2)]): REFUTED\n",
+        "proved_fraction": 0.5714
+      },
+      "student_strategy": "",
+      "tool_calls_summary": [
+        "read_file: data/FixAdderCarry.sv",
+        "read_file: /workdir/data/FixAdderCarry.sv",
+        "edit_file: /workdir/data/FixAdderCarry.sv",
+        "edit_file: /workdir/data/FixCounterWrap.sv",
+        "read_file: /workdir/data/FixDecoder.sv",
+        "edit_file: /workdir/data/FixDecoder.sv"
+      ],
+      "tool_calls_total": 25,
+      "output_files": [
+        "data/FixLFSR.sv",
+        "data/FixArbiterFair.sv",
+        "data/FixMuxSelect.sv",
+        "data/FixRingBuffer.sv",
+        "data/FixFifoAsync.sv",
+        "data/FixPipelineMac.sv",
+        "data/FixRegfileFwd.sv",
+        "data/fix-smv-counter.smv",
+        "data/FixCounterWrap.sv",
+        "data/FixHamming.sv",
+        "data/FixTrafficLight.sv",
+        "data/FixWatchdog.sv",
+        "data/FixUartRx.sv",
+        "data/FixHazardCtrl.sv",
+        "data/FixPriorityEnc.sv",
+        "data/FixTimerIrq.sv",
+        "data/ImplementAxiHandshake.sv",
+        "data/FixGrayCounter.sv",
+        "data/FixFibonacci.sv",
+        "data/FixDffEnable.sv"
+      ],
+      "errors": [],
+      "infra_limitations": [],
+      "time_seconds": 38.0,
+      "assessment": {
+        "path_consistency": {
+          "status": "PASS",
+          "task_output_paths": [],
+          "scoring_reads_from": [],
+          "mismatches": []
+        },
+        "student_comprehension": {
+          "status": "PASS",
+          "understood_task": false,
+          "first_action": "read_file: data/FixAdderCarry.sv",
+          "approach": "read_file: data/FixAdderCarry.sv; read_file: /workdir/data/FixAdderCarry.sv; edit_file: /workdir/data/FixAdderCarry.sv; edit_file: /workdir/data/FixAdderCarry.sv; read_file: /workdir/data/FixArbiterFair.sv",
+          "cheat_attempts": {
+            "tried_root_data": false,
+            "tried_scoring": false,
+            "tried_pip_install": false,
+            "tried_network": false
+          },
+          "suspicious_commands": []
+        },
+        "file_format": {
+          "status": "SKIP",
+          "reason": "No expected extensions detected in instructions"
+        },
+        "scoring_robustness": {
+          "status": "WARN",
+          "cases": {
+            "missing_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "empty_output": {
+              "score": null,
+              "handles_gracefully": false
+            },
+            "malformed_output": {
+              "score": null,
+              "handles_gracefully": false
+            }
+          },
+          "crashes": []
+        }
+      }
+    }
+  ],
+  "tier1_scoring": {
+    "status": "PASS",
+    "tests": [
+      {
+        "name": "zero",
+        "score": 0.01246,
+        "valid": true
+      },
+      {
+        "name": "good",
+        "score": 0.904864,
+        "valid": true
+      },
+      {
+        "name": "bad",
+        "score": 0.05889,
+        "valid": true
+      },
+      {
+        "name": "perfect",
+        "score": 1.0,
+        "valid": true
+      },
+      {
+        "name": "nan",
+        "score": 0.0,
+        "valid": true
+      }
+    ]
+  },
+  "path_consistency": {
+    "status": "PASS",
+    "task_output_paths": [],
+    "scoring_reads_from": [],
+    "mismatches": []
+  },
+  "scoring_robustness": {
+    "status": "WARN",
+    "cases": {
+      "missing_output": {
+        "score": null,
+        "handles_gracefully": false
+      },
+      "empty_output": {
+        "score": null,
+        "handles_gracefully": false
+      },
+      "malformed_output": {
+        "score": null,
+        "handles_gracefully": false
+      }
+    },
+    "crashes": []
+  },
+  "task_difficulty": {
+    "status": "SKIP",
+    "reason": "Unsupported param count: 1"
+  }
+}

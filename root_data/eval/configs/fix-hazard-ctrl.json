@@ -1,0 +1,23 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixHazardCtrl.sv",
+  "top_module": "hazard_ctrl",
+  "bound": 10,
+  "timeout_seconds": 120,
+  "num_expected_properties": 7,
+  "property_names": [
+    "p_reset",
+    "p_raw_ex",
+    "p_stall_load",
+    "p_flush",
+    "p_fwd_ex_val",
+    "p_fwd_wb_val",
+    "p_pipe_advance"
+  ],
+  "module_signature": "module hazard_ctrl( input clk, input reset, // ID stage inputs input [1:0] id_rs, input [1:0] id_rd, input id_valid, input id_op, // 0=ALU, 1=LOAD input [7:0] id_imm, // Outputs output reg [1:0] ex_rd, output reg ex_valid, output reg ex_op, output reg [7:0] ex_result, output reg [1:0] wb_rd, output reg wb_valid, output reg [7:0] wb_result, output reg stall, output reg [7:0] fwd_data )",
+  "scoring": {
+    "sigmoid_center": 0.75,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "a8a75c37bb2e50e3705d6239a5b7c1498834e9251cc4235907fe5aca7ac2a110"
+}

@@ -1,0 +1,22 @@
+{
+  "task_type": "fix_broken",
+  "sv_file": "/workdir/data/FixBoothMul.sv",
+  "top_module": "booth_mul",
+  "bound": 12,
+  "timeout_seconds": 120,
+  "num_expected_properties": 6,
+  "property_names": [
+    "p_reset",
+    "p_done_pulse",
+    "p_test_3x4",
+    "p_test_5x7",
+    "p_test_1x100",
+    "p_identity"
+  ],
+  "module_signature": "module booth_mul( input clk, input reset, input start, input [7:0] multiplicand, input [7:0] multiplier_in, output reg [15:0] product, output reg done )",
+  "scoring": {
+    "sigmoid_center": 0.55,
+    "sigmoid_scale": 8.0
+  },
+  "assertion_body_hash": "57ad585d0670536c0dd6371c5886ddbfefc55c3e4a928fc7ba43b6ae491c5067"
+}
