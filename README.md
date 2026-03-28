@@ -111,12 +111,7 @@ Production: `read_only: true`, `network_mode: none`, `cap_drop: ALL`, `no-new-pr
 
 ## Baseline Results
 
-Scores below show the **unmodified buggy files** submitted without any fix — the floor each task starts from. A fully fixed file scores 1.0 on every task. Red = hard (near-zero without a fix), green = easier to partially score.
+Evaluated 12 tasks across gemini-3.1-pro-preview, kimi-k2.5, and an unmodified (buggy) baseline. The `unmodified` column shows the floor score when submitting without any fix.
 
 ![Performance heatmap](scores.svg)
-
-| Condition | Score range |
-|-----------|-------------|
-| Buggy file (no fix) | 0.01 – 0.41 |
-| Oracle fix applied  | 1.0 (all 12 tasks) |
 
